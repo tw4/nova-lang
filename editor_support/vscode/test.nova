@@ -1,0 +1,8 @@
+  // Test Nova file
+  let greeting = "Hello Nova!";
+  fn test() {
+      if (true) {
+          print(greeting);
+      }
+  }
+  test();

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="nova-language" Version="0.1.0" Language="en-US" Publisher="tw4"/>
+    <DisplayName>Nova Language Support</DisplayName>
+    <Description xml:space="preserve">Syntax highlighting and language support for Nova programming language</Description>
+    <Tags>nova,programming,language,syntax,highlighting</Tags>
+    <Categories>Programming Languages</Categories>
+    <GalleryFlags>Preview</GalleryFlags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Code"/>
+  </Installation>
+  <Dependencies/>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.Code.Manifest" Path="extension/package.json" Addressable="true"/>
+  </Assets>
+</PackageManifest>
