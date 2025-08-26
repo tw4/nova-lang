@@ -1,0 +1,63 @@
+// Test lambda functions and higher-order functions
+
+print("Lambda Functions Test:");
+
+// Simple lambda
+let double = x => x * 2;
+print("double(5) = " + str(double(5)));
+
+// Lambda with more complex logic
+let isEven = n => n % 2 == 0;
+print("isEven(4) = " + str(isEven(4)));
+print("isEven(7) = " + str(isEven(7)));
+
+// Higher-order function - map
+fn map(arr, func) {
+    let result = [];
+    for item in arr {
+        result = push(result, func(item));
+    }
+    result
+}
+
+let numbers = [1, 2, 3, 4, 5];
+let doubled = map(numbers, double);
+print("Original: [" + join(numbers, ", ") + "]");
+print("Doubled: [" + join(doubled, ", ") + "]");
+
+// Filter function
+fn filter(arr, predicate) {
+    let result = [];
+    for item in arr {
+        if (predicate(item)) {
+            result = push(result, item);
+        }
+    }
+    result
+}
+
+let evens = filter(numbers, isEven);
+print("Even numbers: [" + join(evens, ", ") + "]");
+
+// Reduce function
+fn reduce(arr, func, initial) {
+    let result = initial;
+    for item in arr {
+        result = func(result, item);
+    }
+    result
+}
+
+let sum = reduce(numbers, (acc, x) => acc + x, 0);
+print("Sum: " + str(sum));
+
+// Function composition
+fn compose(f, g) {
+    x => f(g(x))
+}
+
+let increment = x => x + 1;
+let square = x => x * x;
+let incThenSquare = compose(square, increment);
+
+print("incThenSquare(3) = " + str(incThenSquare(3))); // (3+1)^2 = 16

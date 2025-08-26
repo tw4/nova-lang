@@ -1,0 +1,5 @@
+// Test string import path
+
+import "math_module" as math;
+print("String import test:");
+print("math.E = " + str(math.E));

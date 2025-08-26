@@ -1,0 +1,19 @@
+# Count .nova files as Text (avoids misclassification as Rust)
+*.nova linguist-language=Text
+
+# Suppress Rust files from language statistics
+*.rs              linguist-detectable=false
+src/**/*.rs       linguist-detectable=false
+
+# Common exclusions to keep stats clean
+tests/**/*        linguist-detectable=false
+testdata/**/*     linguist-detectable=false
+fixtures/**/*     linguist-detectable=false
+examples/**/*     linguist-detectable=false
+build/**/*        linguist-detectable=false
+dist/**/*         linguist-detectable=false
+target/**/*       linguist-detectable=false
+vendor/**/*       linguist-vendored
+third_party/**/*  linguist-vendored
+docs/**/*         linguist-documentation
+scripts/**/*      linguist-detectable=false

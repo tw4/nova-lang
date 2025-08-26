@@ -1,0 +1,22 @@
+[package]
+name = "nova-runtime"
+description = "Nova Programming Language Runtime Library"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords = ["programming-language", "runtime", "interpreter"]
+categories = ["development-tools"]
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+regex.workspace = true
+reqwest.workspace = true
+tokio.workspace = true
+
+[lib]
+name = "nova_runtime"
+path = "lib.rs"

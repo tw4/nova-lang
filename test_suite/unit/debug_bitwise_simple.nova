@@ -1,0 +1,6 @@
+// Simple bitwise test
+
+let a = 5;
+let b = 3;
+print("a = " + str(a));
+print("b = " + str(b));

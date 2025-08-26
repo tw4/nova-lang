@@ -1,0 +1,24 @@
+[package]
+name = "nova-testing"
+description = "Nova Programming Language Testing Framework"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords = ["programming-language", "testing", "test-framework"]
+categories = ["development-tools"]
+
+[dependencies]
+nova-compiler = { path = "../compiler" }
+colored.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+criterion.workspace = true
+
+[lib]
+name = "nova_testing"
+path = "lib.rs"

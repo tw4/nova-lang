@@ -1,0 +1,58 @@
+// Test bitwise operators
+
+print("=== Bitwise Operations ===");
+
+let a = 12;  // Binary: 1100
+let b = 10;  // Binary: 1010
+
+print("a = " + str(a) + " (binary: 1100)");
+print("b = " + str(b) + " (binary: 1010)");
+print("");
+
+// Bitwise AND
+let and_result = a & b;  // 1100 & 1010 = 1000 = 8
+print("a & b = " + str(and_result));
+
+// Bitwise OR
+let or_result = a | b;   // 1100 | 1010 = 1110 = 14
+print("a | b = " + str(or_result));
+
+// Bitwise XOR
+let xor_result = a ^ b;  // 1100 ^ 1010 = 0110 = 6
+print("a ^ b = " + str(xor_result));
+
+// Bitwise NOT
+let not_a = ~a;          // ~1100 = ...11110011 (depends on bit width)
+print("~a = " + str(not_a));
+
+// Left shift
+let left_shift = a << 2; // 1100 << 2 = 110000 = 48
+print("a << 2 = " + str(left_shift));
+
+// Right shift
+let right_shift = a >> 2; // 1100 >> 2 = 11 = 3
+print("a >> 2 = " + str(right_shift));
+
+print("");
+print("Complex bitwise expression:");
+let complex = (a & b) | (a ^ b);  // Should equal a | b
+print("(a & b) | (a ^ b) = " + str(complex));
+print("This should equal a | b = " + str(or_result));
+
+// Practical bitwise usage - checking if number is even/odd
+fn is_even(n) {
+    (n & 1) == 0
+}
+
+print("");
+print("Even/odd checking with bitwise AND:");
+for num in [7, 8, 9, 10, 11, 12] {
+    if (is_even(num)) {
+        print(str(num) + " is even");
+    } else {
+        print(str(num) + " is odd");
+    }
+}
+
+print("");
+print("Bitwise tests completed!");

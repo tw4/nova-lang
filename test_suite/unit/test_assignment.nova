@@ -1,0 +1,13 @@
+// Test assignment operations
+
+let x = 10;
+print("Initial x: " + str(x));
+
+x = 20;
+print("After assignment: " + str(x));
+
+let arr = [1, 2, 3];
+print("Initial array: [" + join(arr, ", ") + "]");
+
+arr = push(arr, 4);
+print("After push: [" + join(arr, ", ") + "]");

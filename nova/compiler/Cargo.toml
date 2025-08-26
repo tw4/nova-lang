@@ -1,0 +1,27 @@
+[package]
+name = "nova-compiler"
+description = "Nova Programming Language Compiler and Interpreter"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords = ["programming-language", "compiler", "interpreter", "dynamic"]
+categories = ["compilers", "command-line-utilities"]
+
+[[bin]]
+name = "nova"
+path = "src/main.rs"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+regex.workspace = true
+reqwest.workspace = true
+tokio.workspace = true
+clap.workspace = true
+colored.workspace = true
+
+[dev-dependencies]
+criterion.workspace = true

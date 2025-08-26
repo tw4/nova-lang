@@ -1,0 +1,47 @@
+// Test standard library modules
+
+print("=== Standard Library Test ===");
+
+// Import string utilities
+import std/string_utils as str_utils;
+
+print("String utilities test:");
+let test_str = "Hello Nova";
+print("Original: '" + test_str + "'");
+print("Empty check: " + str(str_utils.is_empty(test_str)));
+print("Starts with 'Hello': " + str(str_utils.starts_with(test_str, "Hello")));
+print("Ends with 'Nova': " + str(str_utils.ends_with(test_str, "Nova")));
+print("Repeat 'Hi' 3 times: '" + str_utils.repeat("Hi", 3) + "'");
+print("Reverse: '" + str_utils.reverse_string(test_str) + "'");
+print("Pad left (15 chars with '*'): '" + str_utils.pad_left(test_str, 15, "*") + "'");
+print("Pad right (15 chars with '-'): '" + str_utils.pad_right(test_str, 15, "-") + "'");
+print("Center (20 chars with '='): '" + str_utils.center(test_str, 20, "=") + "'");
+
+print("");
+
+// Import array utilities  
+import std/array_utils as arr_utils;
+
+print("Array utilities test:");
+let numbers = [5, 2, 8, 1, 9, 3];
+print("Original array: [" + join(numbers, ", ") + "]");
+print("First element: " + str(arr_utils.first(numbers)));
+print("Last element: " + str(arr_utils.last(numbers)));
+print("Slice (1 to 4): [" + join(arr_utils.slice(numbers, 1, 4), ", ") + "]");
+print("Find 8: index " + str(arr_utils.find(numbers, 8)));
+print("Remove at index 2: [" + join(arr_utils.remove_at(numbers, 2), ", ") + "]");
+print("Insert 10 at index 2: [" + join(arr_utils.insert_at(numbers, 2, 10), ", ") + "]");
+
+print("");
+print("Statistical functions:");
+print("Sum: " + str(arr_utils.sum(numbers)));
+print("Average: " + str(arr_utils.average(numbers)));
+print("Min: " + str(arr_utils.min(numbers)));
+print("Max: " + str(arr_utils.max(numbers)));
+
+let duplicated = [1, 2, 2, 3, 3, 3, 4];
+print("Array with duplicates: [" + join(duplicated, ", ") + "]");
+print("Unique values: [" + join(arr_utils.unique(duplicated), ", ") + "]");
+
+print("");
+print("Standard library test completed!");

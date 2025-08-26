@@ -1,0 +1,15 @@
+// Test simple assignment
+
+let x = 10;
+print("Initial x: " + str(x));
+
+x = x + 5;
+print("After x = x + 5: " + str(x));
+
+// Test in block
+{
+    x = x * 2;
+    print("In block x = x * 2: " + str(x));
+}
+
+print("After block: " + str(x));

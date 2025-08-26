@@ -1,0 +1,101 @@
+// Web API Example - HTTP Client and JSON Processing
+
+print("=== Web API Example ===");
+
+// Example of making HTTP requests (commented out for safety)
+// Uncomment to test with a real API endpoint
+
+/*
+// Get weather data example
+let city = "London";
+let api_url = "https://api.openweathermap.org/data/2.5/weather?q=" + city;
+
+print("Fetching weather data for " + city + "...");
+let response = http_get(api_url);
+let weather_data = json_parse(response);
+
+print("City: " + weather_data.name);
+print("Temperature: " + str(weather_data.main.temp - 273.15) + "°C");
+print("Description: " + weather_data.weather[0].description);
+*/
+
+// Simulate API data processing instead
+print("Simulating API data processing...");
+
+let mock_response = json_stringify({
+    name: "Istanbul",
+    main: {
+        temp: 295.15,
+        humidity: 65
+    },
+    weather: [
+        {description: "clear sky"}
+    ]
+});
+
+write_file("weather_response.json", mock_response);
+print("Mock API response saved");
+
+// Process the "API response"
+let api_data = json_parse(read_file("weather_response.json"));
+print("Processing API response...");
+
+let city_name = api_data.name;
+let temp_kelvin = api_data.main.temp;
+let temp_celsius = temp_kelvin - 273.15;
+let humidity = api_data.main.humidity;
+let description = api_data.weather[0].description;
+
+print("Weather Report for " + city_name + ":");
+print("Temperature: " + str(temp_celsius) + "°C");  
+print("Humidity: " + str(humidity) + "%");
+print("Conditions: " + upper(description));
+
+// Create formatted weather report
+let weather_report = "WEATHER REPORT\n";
+weather_report = weather_report + "===============\n";
+weather_report = weather_report + "Location: " + city_name + "\n";
+weather_report = weather_report + "Temperature: " + str(temp_celsius) + "°C\n";
+weather_report = weather_report + "Humidity: " + str(humidity) + "%\n";  
+weather_report = weather_report + "Conditions: " + description + "\n";
+weather_report = weather_report + "Report Time: " + str(now()) + "\n";
+
+write_file("weather_report.txt", weather_report);
+print("Weather report saved to weather_report.txt");
+
+// Data transformation example
+let temperatures = [22.5, 25.0, 18.3, 30.2, 15.8, 27.9];
+print("Raw temperatures: [" + join(temperatures, ", ") + "]");
+
+// Convert to Fahrenheit using higher-order functions
+fn celsius_to_fahrenheit(c) {
+    c * 9 / 5 + 32
+}
+
+fn map_temperatures(temps, converter) {
+    let result = [];
+    for temp in temps {
+        result = push(result, converter(temp));
+    }
+    result
+}
+
+let fahrenheit_temps = map_temperatures(temperatures, celsius_to_fahrenheit);
+print("Fahrenheit: [" + join(fahrenheit_temps, ", ") + "]");
+
+// Statistical analysis
+let sorted_temps = sort(temperatures);
+let min_temp = sorted_temps[0];
+let max_temp = reverse(sorted_temps)[0];
+
+let sum = 0;
+for temp in temperatures {
+    sum = sum + temp;
+}
+let avg_temp = sum / len(temperatures);
+
+print("Temperature Analysis:");
+print("Min: " + str(min_temp) + "°C");
+print("Max: " + str(max_temp) + "°C");  
+print("Average: " + str(avg_temp) + "°C");
+print("Range: " + str(max_temp - min_temp) + "°C");

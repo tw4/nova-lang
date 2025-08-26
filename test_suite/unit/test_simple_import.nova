@@ -1,0 +1,7 @@
+// Simple import test
+
+print("=== Simple Import Test ===");
+
+import math_module as math;
+print("Math module imported successfully!");
+print("math.PI = " + str(math.PI));

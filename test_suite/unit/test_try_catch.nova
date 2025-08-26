@@ -1,0 +1,48 @@
+// Test try/catch error handling
+
+print("=== Try/Catch Error Handling ===");
+
+// Test 1: Catching division by zero
+try {
+    let result = 10 / 0;
+    print("This shouldn't be printed");
+} catch (error) {
+    print("Caught error: " + error.message);
+}
+
+// Test 2: Catching undefined variable
+try {
+    print("Undefined variable: " + undefinedVar);
+} catch (err) {
+    print("Variable error caught: " + err.type);
+}
+
+// Test 3: No error case
+try {
+    let x = 5 + 3;
+    print("No error: " + str(x));
+} catch (e) {
+    print("This shouldn't execute");
+}
+
+// Test 4: Throwing custom error
+try {
+    throw "Custom error message";
+} catch (error) {
+    print("Custom error caught: " + error.message);
+}
+
+// Test 5: Nested try/catch
+try {
+    print("Outer try block");
+    try {
+        throw "Inner error";
+    } catch (innerErr) {
+        print("Inner catch: " + innerErr.message);
+        throw "Outer error from inner catch";
+    }
+} catch (outerErr) {
+    print("Outer catch: " + outerErr.message);
+}
+
+print("Try/catch tests completed!");

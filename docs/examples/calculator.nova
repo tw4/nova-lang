@@ -1,0 +1,31 @@
+// Basit hesap makinesi fonksiyonları
+
+fn add(a, b) {
+    a + b
+}
+
+fn subtract(a, b) {
+    a - b
+}
+
+fn multiply(a, b) {
+    a * b
+}
+
+fn divide(a, b) {
+    if (b == 0) {
+        print("Hata: Sıfıra bölünemez!");
+        null
+    } else {
+        a / b
+    }
+}
+
+// Test işlemleri
+let x = 10;
+let y = 5;
+
+print("Toplama: " + add(x, y));
+print("Çıkarma: " + subtract(x, y));
+print("Çarpma: " + multiply(x, y));
+print("Bölme: " + divide(x, y));

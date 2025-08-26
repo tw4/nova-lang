@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Programming Language</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 6rem 0;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .features {
+            background: white;
+            padding: 6rem 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 3rem 0;
+        }
+        
+        .code-block {
+            background: #1a202c;
+            padding: 2rem;
+            border-radius: 10px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .number { color: #bd93f9; }
+        .comment { color: #6272a4; }
+        .function { color: #50fa7b; }
+        
+        .getting-started {
+            background: #f8f9fa;
+            padding: 6rem 0;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .footer-links {
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: #a0aec0;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Nova</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#docs">Documentation</a></li>
+                <li><a href="https://github.com/nova-lang/nova">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Nova</h1>
+            <p>A modern, elegant programming language for everyone</p>
+            <a href="#getting-started" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Why Nova?</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 3rem;">
+                Designed for simplicity, built for power
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Simple Syntax</h3>
+                    <p>Clean, intuitive syntax that's easy to learn and write. No unnecessary complexity.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Dynamic Typing</h3>
+                    <p>Write code faster with dynamic typing. Focus on logic, not type annotations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Built-in Data Structures</h3>
+                    <p>Arrays, objects, and powerful built-in functions to get things done quickly.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>First-class Functions</h3>
+                    <p>Functions are values. Create closures, higher-order functions, and functional patterns.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Modern Control Flow</h3>
+                    <p>Intuitive if/else, while loops, and for-in iteration over collections.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Standard Library</h3>
+                    <p>Rich standard library with math, string, and array utilities built-in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples" class="code-example">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: white;">See Nova in Action</h2>
+            
+            <div class="code-block">
+<span class="comment">// Hello World</span>
+<span class="function">print</span>(<span class="string">"Hello, Nova!"</span>);
+
+<span class="comment">// Variables and functions</span>
+<span class="keyword">let</span> name = <span class="string">"World"</span>;
+<span class="keyword">fn</span> greet(person) {
+    <span class="string">"Hello, "</span> + person + <span class="string">"!"</span>
+}
+
+<span class="function">print</span>(greet(name));
+
+<span class="comment">// Arrays and loops</span>
+<span class="keyword">let</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+<span class="keyword">let</span> sum = <span class="number">0</span>;
+
+<span class="keyword">for</span> num <span class="keyword">in</span> numbers {
+    sum = sum + num;
+}
+
+<span class="function">print</span>(<span class="string">"Sum: "</span> + sum);
+
+<span class="comment">// Higher-order functions</span>
+<span class="keyword">fn</span> map_array(arr, func) {
+    <span class="keyword">let</span> result = [];
+    <span class="keyword">for</span> item <span class="keyword">in</span> arr {
+        result = <span class="function">push</span>(result, func(item));
+    }
+    result
+}
+
+<span class="keyword">fn</span> square(x) { x * x }
+<span class="keyword">let</span> squares = map_array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], square);
+<span class="function">print</span>(squares); <span class="comment">// [1, 4, 9]</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="getting-started" class="getting-started">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Getting Started</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 3rem;">
+                Start coding with Nova in minutes
+            </p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install Rust</h3>
+                    <p>Nova is built with Rust. Install Rust from <a href="https://rustup.rs/">rustup.rs</a></p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Clone Nova</h3>
+                    <p>Clone the Nova repository: <code>git clone https://github.com/nova-lang/nova.git</code></p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Build & Run</h3>
+                    <p>Build Nova with <code>cargo build --release</code> and start coding with <code>cargo run</code></p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Write Code</h3>
+                    <p>Create .nova files and run them with <code>cargo run your_file.nova</code></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#docs">Documentation</a>
+                <a href="https://github.com/nova-lang/nova">GitHub</a>
+                <a href="#examples">Examples</a>
+                <a href="#community">Community</a>
+            </div>
+            <p>&copy; 2024 Nova Programming Language. Open source under MIT License.</p>
+        </div>
+    </footer>
+</body>
+</html>

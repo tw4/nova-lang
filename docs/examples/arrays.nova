@@ -1,0 +1,42 @@
+// Array (Dizi) örnekleri
+
+// Temel array oluşturma
+let numbers = [1, 2, 3, 4, 5];
+let names = ["Ali", "Veli", "Ayşe"];
+let mixed = [1, "hello", true, null];
+
+print("Numbers: " + numbers);
+print("Names: " + names);
+print("Mixed: " + mixed);
+
+// Array erişimi
+print("İlk sayı: " + numbers[0]);
+print("İkinci isim: " + names[1]);
+print("Üçüncü eleman: " + mixed[2]);
+
+// Array uzunluğu
+print("Numbers uzunluğu: " + len(numbers));
+print("Names uzunluğu: " + len(names));
+
+// Array üzerinde iteration
+print("Numbers dizisindeki elemanlar:");
+for num in numbers {
+    print("- " + num);
+}
+
+print("Names dizisindeki elemanlar:");
+for name in names {
+    print("Merhaba " + name + "!");
+}
+
+// Array fonksiyonları
+let fruits = ["elma", "armut"];
+print("Meyveler: " + fruits);
+
+let new_fruits = push(fruits, "portakal");
+print("Portakal eklendikten sonra: " + new_fruits);
+
+// Nested arrays
+let matrix = [[1, 2], [3, 4], [5, 6]];
+print("Matrix: " + matrix);
+print("Matrix[1][0]: " + matrix[1][0]);

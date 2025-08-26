@@ -1,0 +1,67 @@
+// Test runner for Nova language
+// Simple testing framework
+
+let tests_passed = 0;
+let tests_failed = 0;
+let current_test_suite = "";
+
+fn start_test_suite(name) {
+    current_test_suite = name;
+    print("=== Running Test Suite: " + name + " ===");
+}
+
+fn assert_equal(actual, expected, test_name) {
+    if (actual == expected) {
+        tests_passed = tests_passed + 1;
+        print("✓ " + test_name);
+    } else {
+        tests_failed = tests_failed + 1;
+        print("✗ " + test_name);
+        print("  Expected: " + str(expected));
+        print("  Actual: " + str(actual));
+    }
+}
+
+fn assert_true(condition, test_name) {
+    assert_equal(condition, true, test_name);
+}
+
+fn assert_false(condition, test_name) {
+    assert_equal(condition, false, test_name);
+}
+
+fn assert_not_null(value, test_name) {
+    if (value != null) {
+        tests_passed = tests_passed + 1;
+        print("✓ " + test_name);
+    } else {
+        tests_failed = tests_failed + 1;
+        print("✗ " + test_name + " - Value is null");
+    }
+}
+
+fn assert_null(value, test_name) {
+    assert_equal(value, null, test_name);
+}
+
+fn assert_type(value, expected_type, test_name) {
+    assert_equal(type(value), expected_type, test_name);
+}
+
+fn finish_test_suite() {
+    print("--- Test Suite '" + current_test_suite + "' Complete ---");
+    print("");
+}
+
+fn print_test_summary() {
+    print("=== TEST SUMMARY ===");
+    print("Tests Passed: " + tests_passed);
+    print("Tests Failed: " + tests_failed);
+    print("Total Tests: " + (tests_passed + tests_failed));
+    
+    if (tests_failed == 0) {
+        print("🎉 All tests passed!");
+    } else {
+        print("❌ " + tests_failed + " test(s) failed");
+    }
+}

@@ -1,0 +1,33 @@
+// Test File I/O and JSON functions
+
+print("File I/O Test:");
+
+// Write a file
+let content = "Hello from Nova!\nThis is a test file.";
+write_file("output.txt", content);
+print("File written: output.txt");
+
+// Check if file exists
+print("File exists: " + str(exists("output.txt")));
+
+// Read the file back
+let read_content = read_file("output.txt");
+print("File content: " + read_content);
+
+// JSON test
+print("\nJSON Test:");
+let data = {
+    name: "Nova",
+    version: 0.2,
+    features: ["fast", "simple", "powerful"]
+};
+
+let json_string = json_stringify(data);
+print("JSON string: " + json_string);
+
+let parsed_data = json_parse(json_string);
+print("Parsed name: " + parsed_data["name"]);
+print("Parsed version: " + str(parsed_data["version"]));
+
+print("\nFile cleanup...");
+// Note: We don't have a delete file function yet, so output.txt will remain

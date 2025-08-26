@@ -1,0 +1,21 @@
+// Test Nova script
+let name = "Nova";
+let version = 0.2;
+
+print("Hello from " + name + " v" + str(version));
+
+// Test function
+fn greet(person) {
+    "Hello, " + person + "!"
+}
+
+print(greet("World"));
+
+// Test array
+let numbers = [1, 2, 3, 4, 5];
+print("Array length: " + str(len(numbers)));
+print("First element: " + str(numbers[0]));
+
+// Test object
+let person = {name: "Alice", age: 30};
+print("Person name: " + person["name"]);

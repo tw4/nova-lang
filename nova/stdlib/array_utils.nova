@@ -1,0 +1,156 @@
+// Array utility functions for Nova standard library
+
+fn first(arr) {
+    if (len(arr) > 0) {
+        arr[0]
+    } else {
+        null
+    }
+}
+
+fn last(arr) {
+    let length = len(arr);
+    if (length > 0) {
+        arr[length - 1]
+    } else {
+        null
+    }
+}
+
+fn slice(arr, start, end) {
+    let result = [];
+    let length = len(arr);
+    let actual_start = start;
+    let actual_end = end;
+    
+    if (actual_start < 0) {
+        actual_start = 0;
+    }
+    
+    if (actual_end > length) {
+        actual_end = length;
+    }
+    
+    let i = actual_start;
+    while (i < actual_end) {
+        result = push(result, arr[i]);
+        i = i + 1;
+    }
+    result
+}
+
+fn find(arr, value) {
+    let i = 0;
+    while (i < len(arr)) {
+        if (arr[i] == value) {
+            return i;
+        }
+        i = i + 1;
+    }
+    -1
+}
+
+fn remove_at(arr, index) {
+    let result = [];
+    let i = 0;
+    while (i < len(arr)) {
+        if (i != index) {
+            result = push(result, arr[i]);
+        }
+        i = i + 1;
+    }
+    result
+}
+
+fn insert_at(arr, index, value) {
+    let result = [];
+    let i = 0;
+    let inserted = false;
+    
+    while (i <= len(arr)) {
+        if (i == index and !inserted) {
+            result = push(result, value);
+            inserted = true;
+        }
+        if (i < len(arr)) {
+            result = push(result, arr[i]);
+        }
+        i = i + 1;
+    }
+    
+    if (!inserted) {
+        result = push(result, value);
+    }
+    
+    result
+}
+
+fn flatten(arr) {
+    let result = [];
+    for item in arr {
+        if (type(item) == "array") {
+            let flattened = flatten(item);
+            for sub_item in flattened {
+                result = push(result, sub_item);
+            }
+        } else {
+            result = push(result, item);
+        }
+    }
+    result
+}
+
+fn unique(arr) {
+    let result = [];
+    for item in arr {
+        if (!contains(result, item)) {
+            result = push(result, item);
+        }
+    }
+    result
+}
+
+fn sum(arr) {
+    let result = 0;
+    for item in arr {
+        result = result + item;
+    }
+    result
+}
+
+fn average(arr) {
+    let length = len(arr);
+    if (length == 0) {
+        0
+    } else {
+        sum(arr) / length
+    }
+}
+
+fn min(arr) {
+    if (len(arr) == 0) {
+        null
+    } else {
+        let result = arr[0];
+        for item in arr {
+            if (item < result) {
+                result = item;
+            }
+        }
+        result
+    }
+}
+
+fn max(arr) {
+    if (len(arr) == 0) {
+        null
+    } else {
+        let result = arr[0];
+        for item in arr {
+            if (item > result) {
+                result = item;
+            }
+        }
+        result
+    }
+}

@@ -1,0 +1,14 @@
+// Debug object property access
+
+let person = {name: "Alice", age: 30};
+print("Person object: " + json_stringify(person));
+print("Name property: " + person.name);
+print("Age property: " + str(person.age));
+
+let employees = [
+    {name: "Bob", salary: 50000}
+];
+
+print("First employee: " + json_stringify(employees[0]));
+print("Employee name: " + employees[0].name);
+print("Employee salary: " + str(employees[0].salary));

@@ -1,0 +1,257 @@
+// Performance benchmarks for Nova language
+
+// Simple timing function (approximation)
+let benchmark_start_time = 0;
+
+fn benchmark_start(name) {
+    print("Running benchmark: " + name);
+    benchmark_start_time = 0; // Reset timer (would use system time in real implementation)
+}
+
+fn benchmark_end() {
+    print("Benchmark completed");
+    print("---");
+}
+
+// Fibonacci benchmark
+fn benchmark_fibonacci() {
+    benchmark_start("Fibonacci Calculation");
+    
+    fn fibonacci(n) {
+        if (n <= 1) {
+            n
+        } else {
+            fibonacci(n - 1) + fibonacci(n - 2)
+        }
+    }
+    
+    let result = fibonacci(25);
+    print("Fibonacci(25) = " + result);
+    
+    benchmark_end();
+}
+
+// Array operations benchmark
+fn benchmark_arrays() {
+    benchmark_start("Array Operations");
+    
+    // Create large array
+    let large_array = [];
+    let i = 0;
+    while (i < 1000) {
+        large_array = push(large_array, i);
+        i = i + 1;
+    }
+    print("Created array with " + len(large_array) + " elements");
+    
+    // Sum all elements
+    let sum = 0;
+    for num in large_array {
+        sum = sum + num;
+    }
+    print("Sum of all elements: " + sum);
+    
+    // Filter even numbers
+    let evens = [];
+    for num in large_array {
+        if (num % 2 == 0) {
+            evens = push(evens, num);
+        }
+    }
+    print("Even numbers count: " + len(evens));
+    
+    benchmark_end();
+}
+
+// String operations benchmark
+fn benchmark_strings() {
+    benchmark_start("String Operations");
+    
+    // String concatenation
+    let long_string = "";
+    let i = 0;
+    while (i < 100) {
+        long_string = long_string + "Hello World " + i + " ";
+        i = i + 1;
+    }
+    print("Generated string length: " + len(long_string));
+    
+    // String iteration
+    let char_count = 0;
+    for char in long_string {
+        char_count = char_count + 1;
+    }
+    print("Character count: " + char_count);
+    
+    benchmark_end();
+}
+
+// Function call overhead benchmark
+fn benchmark_functions() {
+    benchmark_start("Function Call Overhead");
+    
+    fn simple_add(a, b) {
+        a + b
+    }
+    
+    let result = 0;
+    let i = 0;
+    while (i < 1000) {
+        result = result + simple_add(i, 1);
+        i = i + 1;
+    }
+    print("Function calls completed, result: " + result);
+    
+    benchmark_end();
+}
+
+// Recursive function benchmark
+fn benchmark_recursion() {
+    benchmark_start("Recursion Performance");
+    
+    fn sum_recursive(n) {
+        if (n <= 0) {
+            0
+        } else {
+            n + sum_recursive(n - 1)
+        }
+    }
+    
+    let result = sum_recursive(500);
+    print("Recursive sum(500) = " + result);
+    
+    benchmark_end();
+}
+
+// Nested loop benchmark
+fn benchmark_nested_loops() {
+    benchmark_start("Nested Loops");
+    
+    let operations = 0;
+    let i = 0;
+    while (i < 100) {
+        let j = 0;
+        while (j < 100) {
+            operations = operations + 1;
+            j = j + 1;
+        }
+        i = i + 1;
+    }
+    print("Completed " + operations + " operations");
+    
+    benchmark_end();
+}
+
+// Object/array manipulation benchmark
+fn benchmark_data_structures() {
+    benchmark_start("Data Structure Manipulation");
+    
+    // Create nested array structure
+    let matrix = [];
+    let row = 0;
+    while (row < 50) {
+        let current_row = [];
+        let col = 0;
+        while (col < 50) {
+            current_row = push(current_row, row * col);
+            col = col + 1;
+        }
+        matrix = push(matrix, current_row);
+        row = row + 1;
+    }
+    
+    // Access and sum diagonal elements
+    let diagonal_sum = 0;
+    let i = 0;
+    while (i < len(matrix)) {
+        diagonal_sum = diagonal_sum + matrix[i][i];
+        i = i + 1;
+    }
+    print("Matrix created: " + len(matrix) + "x" + len(matrix[0]));
+    print("Diagonal sum: " + diagonal_sum);
+    
+    benchmark_end();
+}
+
+// Memory allocation benchmark
+fn benchmark_memory() {
+    benchmark_start("Memory Allocation");
+    
+    let arrays = [];
+    let i = 0;
+    while (i < 100) {
+        let temp_array = [];
+        let j = 0;
+        while (j < 50) {
+            temp_array = push(temp_array, j * i);
+            j = j + 1;
+        }
+        arrays = push(arrays, temp_array);
+        i = i + 1;
+    }
+    
+    print("Created " + len(arrays) + " arrays");
+    
+    // Calculate total elements
+    let total_elements = 0;
+    for array in arrays {
+        total_elements = total_elements + len(array);
+    }
+    print("Total elements across all arrays: " + total_elements);
+    
+    benchmark_end();
+}
+
+// Prime number calculation benchmark
+fn benchmark_primes() {
+    benchmark_start("Prime Number Calculation");
+    
+    fn is_prime(n) {
+        if (n < 2) {
+            false
+        } else if (n == 2) {
+            true
+        } else if (n % 2 == 0) {
+            false
+        } else {
+            let i = 3;
+            while (i * i <= n) {
+                if (n % i == 0) {
+                    return false;
+                }
+                i = i + 2;
+            }
+            true
+        }
+    }
+    
+    let primes = [];
+    let candidate = 2;
+    while (len(primes) < 100) {
+        if (is_prime(candidate)) {
+            primes = push(primes, candidate);
+        }
+        candidate = candidate + 1;
+    }
+    
+    print("Found " + len(primes) + " primes");
+    print("Largest prime found: " + primes[len(primes) - 1]);
+    
+    benchmark_end();
+}
+
+// Run all benchmarks
+print("=== Nova Language Performance Benchmarks ===");
+print("");
+
+benchmark_fibonacci();
+benchmark_arrays();
+benchmark_strings();
+benchmark_functions();
+benchmark_recursion();
+benchmark_nested_loops();
+benchmark_data_structures();
+benchmark_memory();
+benchmark_primes();
+
+print("=== All Benchmarks Completed ===");

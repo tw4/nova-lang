@@ -1,0 +1,40 @@
+// Koşullu ifadeler ve karar yapıları
+
+fn check_number(n) {
+    if (n > 0) {
+        print(n + " pozitif bir sayıdır");
+    } else if (n < 0) {
+        print(n + " negatif bir sayıdır");
+    } else {
+        print(n + " sıfırdır");
+    }
+}
+
+fn is_even(n) {
+    if (n % 2 == 0) {
+        true
+    } else {
+        false
+    }
+}
+
+// Test değerleri
+let numbers = [-5, 0, 3, 12, -8];
+
+// Her sayı için kontroller
+check_number(-5);
+check_number(0);
+check_number(7);
+
+// Çift sayı kontrolü
+if (is_even(8)) {
+    print("8 çift bir sayıdır");
+} else {
+    print("8 tek bir sayıdır");
+}
+
+if (is_even(7)) {
+    print("7 çift bir sayıdır");
+} else {
+    print("7 tek bir sayıdır");
+}

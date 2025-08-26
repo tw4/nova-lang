@@ -1,0 +1,164 @@
+// Conway's Game of Life Implementation
+
+print("=== Conway's Game of Life ===");
+print("Cellular automata simulation in Nova");
+print("");
+
+// Initialize a small 8x8 grid
+fn create_grid(width, height) {
+    let grid = [];
+    for i in [0, 1, 2, 3, 4, 5, 6, 7] {
+        let row = [];
+        for j in [0, 1, 2, 3, 4, 5, 6, 7] {
+            row = push(row, 0);
+        }
+        grid = push(grid, row);
+    }
+    grid
+}
+
+// Set a cell to alive (1) or dead (0)
+fn set_cell(grid, x, y, value) {
+    grid[x][y] = value;
+    grid
+}
+
+// Get cell value with bounds checking
+fn get_cell(grid, x, y) {
+    if (x < 0 or x >= len(grid)) {
+        0
+    } else if (y < 0 or y >= len(grid[0])) {
+        0
+    } else {
+        grid[x][y]
+    }
+}
+
+// Count living neighbors
+fn count_neighbors(grid, x, y) {
+    let count = 0;
+    
+    // Check all 8 neighbors
+    let directions = [
+        [-1, -1], [-1, 0], [-1, 1],
+        [0, -1],           [0, 1],
+        [1, -1],  [1, 0],  [1, 1]
+    ];
+    
+    for dir in directions {
+        let nx = x + dir[0];
+        let ny = y + dir[1];
+        count = count + get_cell(grid, nx, ny);
+    }
+    
+    count
+}
+
+// Apply Game of Life rules
+fn next_generation(grid) {
+    let new_grid = create_grid(len(grid), len(grid[0]));
+    
+    for x in [0, 1, 2, 3, 4, 5, 6, 7] {
+        for y in [0, 1, 2, 3, 4, 5, 6, 7] {
+            let neighbors = count_neighbors(grid, x, y);
+            let current = get_cell(grid, x, y);
+            
+            // Game of Life rules:
+            // 1. Live cell with 2-3 neighbors survives
+            // 2. Dead cell with exactly 3 neighbors becomes alive
+            // 3. All other cells die or stay dead
+            
+            if (current == 1) {
+                // Living cell
+                if (neighbors == 2 or neighbors == 3) {
+                    new_grid[x][y] = 1;  // Survives
+                } else {
+                    new_grid[x][y] = 0;  // Dies
+                }
+            } else {
+                // Dead cell
+                if (neighbors == 3) {
+                    new_grid[x][y] = 1;  // Born
+                } else {
+                    new_grid[x][y] = 0;  // Stays dead
+                }
+            }
+        }
+    }
+    
+    new_grid
+}
+
+// Print grid to console
+fn print_grid(grid) {
+    for row in grid {
+        let line = "";
+        for cell in row {
+            if (cell == 1) {
+                line = line + "# ";
+            } else {
+                line = line + ". ";
+            }
+        }
+        print(line);
+    }
+    print("");
+}
+
+// Initialize with a simple pattern (glider)
+let grid = create_grid(8, 8);
+
+// Create a glider pattern
+grid[1][2] = 1;
+grid[2][3] = 1;
+grid[3][1] = 1;
+grid[3][2] = 1;
+grid[3][3] = 1;
+
+print("Initial state (Glider pattern):");
+print_grid(grid);
+
+// Run simulation for several generations
+let generation = 0;
+let max_generations = 5;
+
+while (generation < max_generations) {
+    generation = generation + 1;
+    grid = next_generation(grid);
+    
+    print("Generation " + str(generation) + ":");
+    print_grid(grid);
+    
+    // In a real implementation, you might add sleep(1) here
+    // sleep(0.5);
+}
+
+print("Simulation complete!");
+print("The glider should have moved across the grid.");
+print("");
+
+// Count total living cells
+fn count_living_cells(grid) {
+    let count = 0;
+    for row in grid {
+        for cell in row {
+            count = count + cell;
+        }
+    }
+    count
+}
+
+let final_count = count_living_cells(grid);
+print("Final living cells: " + str(final_count));
+
+// Save final state
+let grid_data = {
+    generation: generation,
+    living_cells: final_count,
+    timestamp: now(),
+    grid: grid
+};
+
+let json_output = json_stringify(grid_data);
+write_file("game_of_life_final.json", json_output);
+print("Final state saved to game_of_life_final.json");

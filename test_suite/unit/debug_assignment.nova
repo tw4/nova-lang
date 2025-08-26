@@ -1,0 +1,23 @@
+// Debug assignment in for loop
+
+let counter = 0;
+print("Initial counter: " + str(counter));
+
+let numbers = [1, 2, 3];
+for num in numbers {
+    print("Processing: " + str(num));
+    counter = counter + 1;
+    print("Counter in loop: " + str(counter));
+}
+
+print("Final counter: " + str(counter));
+
+// Test simple variable assignment in for loop
+let salaries = [];
+for salary in [100, 200, 300] {
+    print("Current salary: " + str(salary));
+    salaries = push(salaries, salary);
+    print("Salaries in loop: " + json_stringify(salaries));
+}
+
+print("Final salaries: " + json_stringify(salaries));

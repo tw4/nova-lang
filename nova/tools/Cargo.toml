@@ -1,0 +1,22 @@
+[package]
+name = "nova-tools"
+description = "Nova Programming Language Development Tools"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords = ["programming-language", "tools", "development", "formatter", "linter"]
+categories = ["development-tools", "command-line-utilities"]
+
+[dependencies]
+nova-compiler = { path = "../compiler" }
+clap.workspace = true
+colored.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[lib]
+name = "nova_tools"
+path = "lib.rs"

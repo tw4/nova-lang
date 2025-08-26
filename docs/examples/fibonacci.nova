@@ -1,0 +1,22 @@
+// Fibonacci sayı dizisi hesaplama
+
+fn fibonacci(n) {
+    if (n <= 1) {
+        n
+    } else {
+        fibonacci(n - 1) + fibonacci(n - 2)
+    }
+}
+
+// İlk 10 Fibonacci sayısını yazdır
+let i = 0;
+fn print_fibonacci() {
+    if (i < 10) {
+        print("F(" + i + ") = " + fibonacci(i));
+        i = i + 1;
+        print_fibonacci();
+    }
+}
+
+print("İlk 10 Fibonacci sayısı:");
+print_fibonacci();

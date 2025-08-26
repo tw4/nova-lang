@@ -1,0 +1,27 @@
+// Debug array issue
+
+let employees = {
+    company: "Test",
+    employees: [
+        {name: "Alice", salary: 50000},
+        {name: "Bob", salary: 60000}
+    ]
+};
+
+print("employees object: " + json_stringify(employees));
+
+let emp_list = employees.employees;
+print("emp_list: " + json_stringify(emp_list));
+print("emp_list length: " + str(len(emp_list)));
+
+let salaries = [];
+print("Initial salaries: " + json_stringify(salaries));
+
+for emp in emp_list {
+    print("Processing employee: " + json_stringify(emp));
+    print("Employee salary: " + str(emp.salary));
+    salaries = push(salaries, emp.salary);
+    print("Salaries after push: " + json_stringify(salaries));
+}
+
+print("Final salaries: " + json_stringify(salaries));

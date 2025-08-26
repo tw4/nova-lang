@@ -1,0 +1,60 @@
+// Math utility module
+
+fn add(a, b) {
+    a + b
+}
+
+fn multiply(a, b) {
+    a * b
+}
+
+fn factorial(n) {
+    if (n <= 1) {
+        1
+    } else {
+        let result = 1;
+        let i = 1;
+        while (i <= n) {
+            result = result * i;
+            i = i + 1;
+        }
+        result
+    }
+}
+
+fn fibonacci(n) {
+    if (n <= 1) {
+        n
+    } else {
+        let a = 0;
+        let b = 1;
+        let i = 2;
+        while (i <= n) {
+            let temp = a + b;
+            a = b;
+            b = temp;
+            i = i + 1;
+        }
+        b
+    }
+}
+
+fn is_prime(n) {
+    if (n < 2) {
+        false
+    } else if (n == 2) {
+        true
+    } else {
+        let i = 2;
+        while (i * i <= n) {
+            if (n % i == 0) {
+                return false;
+            }
+            i = i + 1;
+        }
+        true
+    }
+}
+
+let PI = 3.14159;
+let E = 2.71828;

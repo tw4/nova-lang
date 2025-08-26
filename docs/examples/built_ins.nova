@@ -1,0 +1,78 @@
+// Built-in fonksiyon örnekleri
+
+print("=== Built-in Functions ===");
+
+// len fonksiyonu
+let text = "Nova dili";
+let list = [1, 2, 3, 4, 5];
+
+print("Text uzunluğu: " + len(text));
+print("List uzunluğu: " + len(list));
+
+// type fonksiyonu
+print("42 tipi: " + type(42));
+print("'hello' tipi: " + type("hello"));
+print("true tipi: " + type(true));
+print("[1,2,3] tipi: " + type([1, 2, 3]));
+print("null tipi: " + type(null));
+
+// str fonksiyonu (tip dönüşümü)
+print("Sayıyı stringe: " + str(123));
+print("Boolean'ı stringe: " + str(false));
+print("Array'i stringe: " + str([1, 2, 3]));
+
+// num fonksiyonu (tip dönüşümü)
+print("String'i sayıya: " + num("42.5"));
+print("Boolean'ı sayıya: " + num(true));
+print("Boolean'ı sayıya: " + num(false));
+
+// Array fonksiyonları
+let fruits = ["elma", "armut"];
+print("Başlangıç: " + fruits);
+
+let with_banana = push(fruits, "muz");
+print("Muz eklendi: " + with_banana);
+
+let last_fruit = pop(with_banana);
+print("Son meyve çıkarıldı: " + last_fruit);
+
+// Kombinasyon örnekleri
+let numbers = [1, 2, 3, 4, 5];
+print("Numbers: " + numbers);
+print("Length: " + len(numbers));
+print("Type: " + type(numbers));
+
+for num in numbers {
+    print("Sayı: " + num + ", Tipi: " + type(num) + ", String hali: " + str(num));
+}
+
+// String işlemleri
+let message = "Merhaba Dünya";
+print("Mesaj: " + message);
+print("Uzunluk: " + len(message));
+
+print("Her harf:");
+for char in message {
+    print("'" + char + "' (uzunluk: " + len(char) + ")");
+}
+
+// Tip kontrolü ve dönüşümler
+fn process_value(val) {
+    print("Değer: " + str(val));
+    print("Tipi: " + type(val));
+    
+    if (type(val) == "number") {
+        print("Bu bir sayı: " + val);
+    } else if (type(val) == "string") {
+        print("Bu bir string, uzunluğu: " + len(val));
+    } else if (type(val) == "array") {
+        print("Bu bir array, eleman sayısı: " + len(val));
+    }
+    print("---");
+}
+
+process_value(42);
+process_value("hello");
+process_value([1, 2, 3]);
+process_value(true);
+process_value(null);

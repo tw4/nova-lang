@@ -1,0 +1,34 @@
+// Değişkenler ve veri tipleri örnekleri
+
+// Sayı değişkenleri
+let age = 25;
+let height = 1.75;
+let temperature = -5.2;
+
+// String değişkenler
+let name = "Ahmet";
+let city = "İstanbul";
+let greeting = "Merhaba " + name + "!";
+
+// Boolean değişkenler
+let is_student = true;
+let has_license = false;
+let can_vote = age >= 18;
+
+// Null değer
+let empty_value = null;
+
+// Değişkenleri yazdır
+print("İsim: " + name);
+print("Yaş: " + age);
+print("Boy: " + height + " metre");
+print("Şehir: " + city);
+print("Selamlama: " + greeting);
+
+print("Öğrenci mi? " + is_student);
+print("Ehliyet var mı? " + has_license);
+print("Oy kullanabilir mi? " + can_vote);
+
+if (empty_value == null) {
+    print("empty_value null değerindedir");
+}

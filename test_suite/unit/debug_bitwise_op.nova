@@ -1,0 +1,6 @@
+// Test single bitwise operation
+
+let a = 5;
+let b = 3;
+let result = a & b;
+print("5 & 3 = " + str(result));

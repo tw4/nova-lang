@@ -1,0 +1,5 @@
+// Test std library import with string path
+
+import "std/string_utils" as str_utils;
+print("Std library import test:");
+print("Empty check result: " + str(str_utils.is_empty("test")));

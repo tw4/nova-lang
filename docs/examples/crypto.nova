@@ -1,0 +1,212 @@
+// Crypto örneği - Nova'da kriptografi ve güvenlik
+print("=== Nova Crypto Örneği ===");
+print("");
+
+// Hash algoritmaları
+print("--- Hash Algoritmaları ---");
+var message = "Merhaba Nova!";
+print("Orijinal mesaj: " + message);
+
+print("MD5: " + Crypto.hash("md5", message));
+print("SHA1: " + Crypto.hash("sha1", message));
+print("SHA256: " + Crypto.hash("sha256", message));
+print("SHA512: " + Crypto.hash("sha512", message));
+
+// Farklı mesajların hash'leri
+print("");
+print("Farklı mesajların hash'leri (SHA256):");
+var messages = ["hello", "world", "Nova", "programming", "language"];
+for i = 0; i < messages.len(); i = i + 1 {
+    var msg = messages.get(i);
+    var hash = Crypto.hash("sha256", msg);
+    print("  '" + msg + "' -> " + hash.substring(0, 16) + "...");
+}
+
+// HMAC (Hash-based Message Authentication Code)
+print("");
+print("--- HMAC ---");
+var secret_key = "gizli_anahtar_123";
+var data = "Bu önemli bir mesajdır";
+
+print("Mesaj: " + data);
+print("Anahtar: " + secret_key);
+
+var hmac_sha256 = Crypto.hmac("sha256", secret_key.to_bytes(), data.to_bytes());
+print("HMAC-SHA256: " + hmac_sha256);
+
+// Base64 kodlama/çözme
+print("");
+print("--- Base64 Encoding/Decoding ---");
+var plaintext = "Nova programlama dili çok güzel! 🚀";
+print("Orijinal: " + plaintext);
+
+var base64_encoded = Base64.encode(plaintext.to_bytes());
+print("Base64 encoded: " + base64_encoded);
+
+var base64_decoded = Base64.decode(base64_encoded);
+if base64_decoded != nil {
+    var decoded_text = String.from_bytes(base64_decoded);
+    print("Base64 decoded: " + decoded_text);
+} else {
+    print("Base64 decode hatası!");
+}
+
+// Hex kodlama/çözme
+print("");
+print("--- Hex Encoding/Decoding ---");
+var binary_data = [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]; // "Hello World"
+print("Binary data: " + binary_data.to_string());
+
+var hex_encoded = Hex.encode(binary_data);
+print("Hex encoded: " + hex_encoded);
+
+var hex_decoded = Hex.decode(hex_encoded);
+if hex_decoded != nil {
+    print("Hex decoded: " + hex_decoded.to_string());
+    var text = String.from_bytes(hex_decoded);
+    print("As text: " + text);
+} else {
+    print("Hex decode hatası!");
+}
+
+// URL encoding/decoding
+print("");
+print("--- URL Encoding/Decoding ---");
+var url_text = "Nova dil öğrenmek kolay! Boşluk & özel karakterler";
+print("Orijinal: " + url_text);
+
+var url_encoded = UrlEncoding.encode(url_text);
+print("URL encoded: " + url_encoded);
+
+var url_decoded = UrlEncoding.decode(url_encoded);
+if url_decoded != nil {
+    print("URL decoded: " + url_decoded);
+} else {
+    print("URL decode hatası!");
+}
+
+// XOR Cipher (basit şifreleme)
+print("");
+print("--- XOR Cipher ---");
+var xor_message = "Gizli mesaj";
+var xor_key = "anahtar";
+
+print("Orijinal mesaj: " + xor_message);
+print("XOR anahtarı: " + xor_key);
+
+var encrypted = XorCipher.crypt_str(xor_message, xor_key);
+print("Şifrelenmiş (hex): " + Hex.encode(encrypted));
+
+var decrypted = XorCipher.crypt(encrypted, xor_key.to_bytes());
+var decrypted_text = String.from_bytes(decrypted);
+print("Çözülmüş: " + decrypted_text);
+
+// Caesar Cipher (harfları kaydırma)
+print("");
+print("--- Caesar Cipher ---");
+var caesar_text = "Nova Programming Language";
+var shift = 3;
+
+print("Orijinal: " + caesar_text);
+print("Kaydırma: " + shift);
+
+var caesar_encrypted = CaesarCipher.encrypt(caesar_text, shift);
+print("Şifrelenmiş: " + caesar_encrypted);
+
+var caesar_decrypted = CaesarCipher.decrypt(caesar_encrypted, shift);
+print("Çözülmüş: " + caesar_decrypted);
+
+// Checksum ve CRC
+print("");
+print("--- Checksum ve CRC ---");
+var file_data = "Bu bir dosya içeriğidir. Veri bütünlüğü kontrol edilecek.";
+print("Veri: " + file_data);
+
+var checksum = Crypto.checksum(file_data.to_bytes());
+print("Basit checksum: " + checksum);
+
+var crc32 = Crypto.crc32(file_data.to_bytes());
+print("CRC32: " + crc32);
+
+// Veri bütünlüğü testi
+var corrupted_data = file_data + "x"; // Bir karakter değiştir
+var corrupted_crc = Crypto.crc32(corrupted_data.to_bytes());
+print("Bozulmuş veri CRC32: " + corrupted_crc);
+print("Veriler aynı mı? " + (crc32 == corrupted_crc));
+
+// Güvenli karşılaştırma (timing attack koruması)
+print("");
+print("--- Güvenli Karşılaştırma ---");
+var password1 = "gizli123";
+var password2 = "gizli123";
+var wrong_password = "yanlis123";
+
+print("Doğru şifre karşılaştırması: " + 
+      Crypto.constant_time_compare(password1.to_bytes(), password2.to_bytes()));
+print("Yanlış şifre karşılaştırması: " + 
+      Crypto.constant_time_compare(password1.to_bytes(), wrong_password.to_bytes()));
+
+// Rastgele byte üretimi (güvenlik amaçlı)
+print("");
+print("--- Güvenli Rastgele Bytes ---");
+var random_bytes = Crypto.random_bytes(16);
+print("16 rastgele byte (hex): " + Hex.encode(random_bytes));
+
+var salt = Crypto.generate_salt(32);
+print("32 byte salt (hex): " + Hex.encode(salt));
+
+// Şifre hash'leme örneği (basit)
+print("");
+print("--- Şifre Hash'leme ---");
+var user_password = "kullanici_sifresi_123";
+var password_salt = Crypto.generate_salt(16);
+
+print("Kullanıcı şifresi: " + user_password);
+print("Salt (hex): " + Hex.encode(password_salt));
+
+// Şifre + salt birleştirip hash'le
+var salted_password = user_password + Hex.encode(password_salt);
+var password_hash = Crypto.hash("sha256", salted_password);
+print("Şifre hash'i: " + password_hash);
+
+// Şifre doğrulama simülasyonu
+print("");
+print("--- Şifre Doğrulama ---");
+var login_attempt = "kullanici_sifresi_123";
+var login_salted = login_attempt + Hex.encode(password_salt);
+var login_hash = Crypto.hash("sha256", login_salted);
+
+print("Giriş denemesi: " + login_attempt);
+print("Hesaplanan hash: " + login_hash);
+print("Şifre doğru mu? " + (password_hash == login_hash));
+
+// Yanlış şifre denemesi
+var wrong_attempt = "yanlis_sifre_123";
+var wrong_salted = wrong_attempt + Hex.encode(password_salt);
+var wrong_hash = Crypto.hash("sha256", wrong_salted);
+print("Yanlış deneme hash'i: " + wrong_hash);
+print("Yanlış şifre doğru mu? " + (password_hash == wrong_hash));
+
+// Veri bütünlüğü ve imzalama simülasyonu
+print("");
+print("--- Veri Bütünlüğü ve İmzalama ---");
+var document = "Bu önemli bir belgedir. İmzalanmıştır.";
+var private_key = "private_key_123";
+
+print("Belge: " + document);
+
+// Belgenin hash'ini hesapla
+var document_hash = Crypto.hash("sha256", document);
+print("Belge hash'i: " + document_hash);
+
+// Hash'i private key ile imzala (basit HMAC)
+var signature = Crypto.hmac("sha256", private_key.to_bytes(), document.to_bytes());
+print("Dijital imza: " + signature);
+
+// İmza doğrulama
+var verification_signature = Crypto.hmac("sha256", private_key.to_bytes(), document.to_bytes());
+print("Doğrulama imzası: " + verification_signature);
+print("İmza geçerli mi? " + (signature == verification_signature));
+
+print("");
+print("=== Crypto örneği tamamlandı ===");

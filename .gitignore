@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Rust build artifacts
+target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Distribution packages
+*.tar.gz
+*.zip
+dist/
+
+# Temporary files
+*.tmp
+*.log
+
+# Installation files
+INSTALLATION.md

@@ -1,0 +1,27 @@
+// Test module system
+
+print("=== Module System Test ===");
+
+// Import math module
+import math_module as math;
+
+// Test imported functions
+print("Testing math module functions:");
+print("math.add(5, 3) = " + str(math.add(5, 3)));
+print("math.multiply(4, 7) = " + str(math.multiply(4, 7)));
+print("math.factorial(5) = " + str(math.factorial(5)));
+print("math.fibonacci(8) = " + str(math.fibonacci(8)));
+print("math.is_prime(17) = " + str(math.is_prime(17)));
+print("math.is_prime(15) = " + str(math.is_prime(15)));
+
+// Test imported constants
+print("Math constants:");
+print("math.PI = " + str(math.PI));
+print("math.E = " + str(math.E));
+
+// Calculate circle area using imported functions
+let radius = 5;
+let area = math.multiply(math.PI, math.multiply(radius, radius));
+print("Area of circle with radius " + str(radius) + " = " + str(area));
+
+print("Module system test completed!");

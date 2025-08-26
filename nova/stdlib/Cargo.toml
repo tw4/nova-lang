@@ -1,0 +1,21 @@
+[package]
+name = "nova-stdlib"
+description = "Nova Programming Language Standard Library"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords = ["programming-language", "stdlib", "standard-library"]
+categories = ["development-tools"]
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+regex.workspace = true
+reqwest.workspace = true
+
+[lib]
+name = "nova_stdlib"
+path = "lib.rs"

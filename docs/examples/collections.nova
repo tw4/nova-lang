@@ -1,0 +1,146 @@
+// Collections örneği - Nova'da veri yapıları
+print("=== Nova Collections Örneği ===");
+print("");
+
+// List kullanımı
+print("--- List (Dinamik Dizi) ---");
+var list = List();
+list.push(1);
+list.push(2);
+list.push(3);
+list.push("hello");
+list.push(true);
+
+print("List uzunluğu: " + list.len());
+print("İlk eleman: " + list.get(0));
+print("Son eleman: " + list.pop());
+print("2. indeksteki eleman: " + list.get(2));
+
+list.insert(1, "inserted");
+print("1. indekse eklendikten sonra list:");
+for i = 0; i < list.len(); i = i + 1 {
+    print("  [" + i + "] = " + list.get(i));
+}
+
+// Set kullanımı
+print("");
+print("--- Set (Benzersiz Değerler) ---");
+var set = Set();
+set.insert(1);
+set.insert(2);
+set.insert(3);
+set.insert(2); // Tekrar, eklenmeyecek
+set.insert("hello");
+
+print("Set uzunluğu: " + set.len());
+print("1 var mı? " + set.contains(1));
+print("5 var mı? " + set.contains(5));
+
+// Map kullanımı
+print("");
+print("--- Map (Anahtar-Değer Çiftleri) ---");
+var map = Map();
+map.insert("name", "Nova");
+map.insert("version", "1.0");
+map.insert("year", 2024);
+map.insert("active", true);
+
+print("Map uzunluğu: " + map.len());
+print("Name: " + map.get("name"));
+print("Version: " + map.get("version"));
+print("Year: " + map.get("year"));
+
+var keys = map.keys();
+print("Anahtarlar:");
+for i = 0; i < keys.len(); i = i + 1 {
+    var key = keys.get(i);
+    print("  " + key + " -> " + map.get(key));
+}
+
+// Queue kullanımı (FIFO - First In, First Out)
+print("");
+print("--- Queue (Kuyruk) ---");
+var queue = Queue();
+queue.enqueue("first");
+queue.enqueue("second");
+queue.enqueue("third");
+
+print("Queue uzunluğu: " + queue.len());
+print("İlk eleman (peek): " + queue.peek());
+print("Çıkarılan eleman: " + queue.dequeue());
+print("Çıkarılan eleman: " + queue.dequeue());
+print("Kalan uzunluk: " + queue.len());
+
+// Stack kullanımı (LIFO - Last In, First Out)
+print("");
+print("--- Stack (Yığın) ---");
+var stack = Stack();
+stack.push("first");
+stack.push("second");
+stack.push("third");
+
+print("Stack uzunluğu: " + stack.len());
+print("Üst eleman (peek): " + stack.peek());
+print("Çıkarılan eleman: " + stack.pop());
+print("Çıkarılan eleman: " + stack.pop());
+print("Kalan uzunluk: " + stack.len());
+
+// OrderedMap kullanımı (sıralı anahtar-değer çiftleri)
+print("");
+print("--- OrderedMap (Sıralı Map) ---");
+var orderedMap = OrderedMap();
+orderedMap.insert("zebra", "Z harfi");
+orderedMap.insert("apple", "A harfi");
+orderedMap.insert("bear", "B harfi");
+
+print("OrderedMap uzunluğu: " + orderedMap.len());
+print("İlk anahtar-değer: " + orderedMap.first_key_value());
+print("Son anahtar-değer: " + orderedMap.last_key_value());
+
+var sortedKeys = orderedMap.keys();
+print("Sıralı anahtarlar:");
+for i = 0; i < sortedKeys.len(); i = i + 1 {
+    var key = sortedKeys.get(i);
+    print("  " + key + " -> " + orderedMap.get(key));
+}
+
+// OrderedSet kullanımı
+print("");
+print("--- OrderedSet (Sıralı Set) ---");
+var orderedSet = OrderedSet();
+orderedSet.insert("zebra");
+orderedSet.insert("apple");
+orderedSet.insert("bear");
+orderedSet.insert("apple"); // Tekrar, eklenmeyecek
+
+print("OrderedSet uzunluğu: " + orderedSet.len());
+print("İlk eleman: " + orderedSet.first());
+print("Son eleman: " + orderedSet.last());
+
+print("Sıralı elemanlar:");
+var sortedItems = orderedSet.to_array();
+for i = 0; i < sortedItems.len(); i = i + 1 {
+    print("  " + sortedItems.get(i));
+}
+
+// Koleksiyonlar arası dönüşümler
+print("");
+print("--- Koleksiyonlar Arası Dönüşümler ---");
+var list2 = List();
+list2.push(1);
+list2.push(2);
+list2.push(3);
+list2.push(2);
+
+print("Orijinal list: " + list2.to_string());
+
+// List'i Set'e çevir (tekrarları kaldır)
+var uniqueSet = Set.from_list(list2);
+print("Tekrarları kaldırılmış set: " + uniqueSet.to_string());
+
+// Set'i tekrar List'e çevir
+var uniqueList = uniqueSet.to_list();
+print("Tekrarsız list: " + uniqueList.to_string());
+
+print("");
+print("=== Collections örneği tamamlandı ===");

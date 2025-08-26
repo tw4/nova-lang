@@ -1,0 +1,178 @@
+// Advanced Nova Examples - Showcasing Modern Features
+
+print("=== Advanced Nova Examples ===");
+print("Nova v0.2 - Modern Programming Language");
+print("");
+
+// Recursive fibonacci with memoization simulation
+fn fibonacci_memo() {
+    let cache = [];
+    
+    fn fib(n) {
+        if (n <= 1) {
+            n
+        } else if (len(cache) > n and cache[n] != null) {
+            cache[n]
+        } else {
+            let result = fib(n - 1) + fib(n - 2);
+            // Basit cache simulation
+            result
+        }
+    }
+    
+    fib
+}
+
+let fib_func = fibonacci_memo();
+print("Fibonacci(10): " + fib_func(10));
+
+// Array manipulation functions
+fn map_array(arr, func) {
+    let result = [];
+    for item in arr {
+        result = push(result, func(item));
+    }
+    result
+}
+
+fn filter_array(arr, predicate) {
+    let result = [];
+    for item in arr {
+        if (predicate(item)) {
+            result = push(result, item);
+        }
+    }
+    result
+}
+
+fn reduce_array(arr, func, initial) {
+    let accumulator = initial;
+    for item in arr {
+        accumulator = func(accumulator, item);
+    }
+    accumulator
+}
+
+// Test higher-order functions
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+print("Orijinal numbers: " + numbers);
+
+// Map: her sayıyı karesi ile değiştir
+fn square(x) { x * x }
+let squares = map_array(numbers, square);
+print("Kareler: " + squares);
+
+// Filter: sadece çift sayıları al
+fn is_even(x) { x % 2 == 0 }
+let evens = filter_array(numbers, is_even);
+print("Çift sayılar: " + evens);
+
+// Reduce: toplamı hesapla
+fn add(a, b) { a + b }
+let sum = reduce_array(numbers, add, 0);
+print("Toplam: " + sum);
+
+// Complex data structures
+let students = [
+    ["Ali", 85, "A"],
+    ["Veli", 72, "B"],
+    ["Ayşe", 95, "A"],
+    ["Fatma", 68, "C"]
+];
+
+print("=== Öğrenci Listesi ===");
+for student in students {
+    let name = student[0];
+    let score = student[1];
+    let grade = student[2];
+    print(name + " - Not: " + score + " - Harf: " + grade);
+}
+
+// Grade calculation function
+fn calculate_statistics(students) {
+    let total_score = 0;
+    let count = 0;
+    let grades = [];
+    
+    for student in students {
+        let score = student[1];
+        let grade = student[2];
+        total_score = total_score + score;
+        count = count + 1;
+        grades = push(grades, grade);
+    }
+    
+    let average = total_score / count;
+    
+    print("Toplam öğrenci: " + count);
+    print("Ortalama: " + average);
+    print("Notlar: " + grades);
+}
+
+calculate_statistics(students);
+
+// String processing
+let text = "Nova programlama dili cok guzel";
+let words = [];
+let current_word = "";
+
+// Simple word splitting simulation
+for char in text {
+    if (char == " ") {
+        if (len(current_word) > 0) {
+            words = push(words, current_word);
+            current_word = "";
+        }
+    } else {
+        current_word = current_word + char;
+    }
+}
+
+// Don't forget the last word
+if (len(current_word) > 0) {
+    words = push(words, current_word);
+}
+
+print("Text: " + text);
+print("Kelimeler: " + words);
+print("Kelime sayısı: " + len(words));
+
+// Word length analysis
+let word_lengths = [];
+for word in words {
+    word_lengths = push(word_lengths, len(word));
+}
+
+print("Kelime uzunlukları: " + word_lengths);
+
+let total_length = reduce_array(word_lengths, add, 0);
+let avg_word_length = total_length / len(words);
+print("Ortalama kelime uzunluğu: " + avg_word_length);
+
+// Binary search implementation
+fn binary_search(arr, target) {
+    let left = 0;
+    let right = len(arr) - 1;
+    
+    while (left <= right) {
+        let mid = (left + right) / 2;
+        let mid_val = arr[mid];
+        
+        if (mid_val == target) {
+            mid
+        } else if (mid_val < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    
+    -1  // Not found
+}
+
+let sorted_numbers = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+print("Sıralı dizi: " + sorted_numbers);
+print("7'nin pozisyonu: " + binary_search(sorted_numbers, 7));
+print("15'in pozisyonu: " + binary_search(sorted_numbers, 15));
+print("6'nın pozisyonu: " + binary_search(sorted_numbers, 6));

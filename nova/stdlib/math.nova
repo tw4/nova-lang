@@ -1,0 +1,140 @@
+// Math library for Nova
+// Standard mathematical functions and constants
+
+// Constants
+let PI = 3.141592653589793;
+let E = 2.718281828459045;
+
+// Basic math functions
+fn abs(x) {
+    if (x < 0) {
+        -x
+    } else {
+        x
+    }
+}
+
+fn min(a, b) {
+    if (a < b) {
+        a
+    } else {
+        b
+    }
+}
+
+fn max(a, b) {
+    if (a > b) {
+        a
+    } else {
+        b
+    }
+}
+
+fn pow(base, exponent) {
+    if (exponent == 0) {
+        1
+    } else if (exponent == 1) {
+        base
+    } else if (exponent > 1) {
+        base * pow(base, exponent - 1)
+    } else {
+        1 / pow(base, -exponent)
+    }
+}
+
+fn sqrt(x) {
+    if (x < 0) {
+        null  // Error: negative square root
+    } else if (x == 0) {
+        0
+    } else {
+        // Newton's method approximation
+        let guess = x / 2;
+        let epsilon = 0.000001;
+        
+        fn improve(g) {
+            let new_guess = (g + x / g) / 2;
+            if (abs(new_guess - g) < epsilon) {
+                new_guess
+            } else {
+                improve(new_guess)
+            }
+        }
+        
+        improve(guess)
+    }
+}
+
+fn factorial(n) {
+    if (n <= 1) {
+        1
+    } else {
+        n * factorial(n - 1)
+    }
+}
+
+fn gcd(a, b) {
+    if (b == 0) {
+        a
+    } else {
+        gcd(b, a % b)
+    }
+}
+
+fn lcm(a, b) {
+    abs(a * b) / gcd(a, b)
+}
+
+fn is_prime(n) {
+    if (n < 2) {
+        false
+    } else if (n == 2) {
+        true
+    } else if (n % 2 == 0) {
+        false
+    } else {
+        let i = 3;
+        let limit = sqrt(n);
+        
+        fn check(divisor) {
+            if (divisor > limit) {
+                true
+            } else if (n % divisor == 0) {
+                false
+            } else {
+                check(divisor + 2)
+            }
+        }
+        
+        check(i)
+    }
+}
+
+// Trigonometric functions (basic approximations)
+fn sin_approx(x) {
+    // Taylor series approximation for small angles
+    let x2 = x * x;
+    x - (x2 * x) / 6 + (x2 * x2 * x) / 120 - (x2 * x2 * x2 * x) / 5040
+}
+
+fn cos_approx(x) {
+    // Taylor series approximation for small angles
+    let x2 = x * x;
+    1 - x2 / 2 + (x2 * x2) / 24 - (x2 * x2 * x2) / 720
+}
+
+// Random number generation (simple linear congruential generator)
+let random_seed = 1;
+
+fn set_random_seed(seed) {
+    random_seed = seed;
+}
+
+fn random() {
+    random_seed = (random_seed * 1664525 + 1013904223) % pow(2, 32);
+    random_seed / pow(2, 32)
+}
+
+fn random_int(min_val, max_val) {
+    min_val + (random() * (max_val - min_val + 1))
+}

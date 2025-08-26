@@ -1,0 +1,146 @@
+// Random örneği - Nova'da rastgele sayı üretimi
+print("=== Nova Random Örneği ===");
+print("");
+
+// Temel rastgele sayılar
+print("--- Temel Rastgele Sayılar ---");
+Random.seed(12345); // Deterministic sonuçlar için seed
+
+print("Rastgele int (1-10): " + Random.int(1, 10));
+print("Rastgele int (1-10): " + Random.int(1, 10));
+print("Rastgele int (1-10): " + Random.int(1, 10));
+
+print("Rastgele float (0-1): " + Random.float());
+print("Rastgele float (0-1): " + Random.float());
+
+print("Rastgele float (10-20): " + Random.float_range(10.0, 20.0));
+print("Rastgele float (10-20): " + Random.float_range(10.0, 20.0));
+
+// Boolean rastgele değerler
+print("");
+print("--- Boolean Değerler ---");
+print("Rastgele bool: " + Random.bool());
+print("Rastgele bool: " + Random.bool());
+print("Rastgele bool: " + Random.bool());
+
+print("0.7 olasılıkla true: " + Random.bool_with_prob(0.7));
+print("0.3 olasılıkla true: " + Random.bool_with_prob(0.3));
+print("0.1 olasılıkla true: " + Random.bool_with_prob(0.1));
+
+// Listeden seçim
+print("");
+print("--- Listeden Seçim ---");
+var colors = ["kırmızı", "mavi", "yeşil", "sarı", "mor"];
+print("Rastgele renk: " + Random.choice(colors));
+print("Rastgele renk: " + Random.choice(colors));
+print("Rastgele renk: " + Random.choice(colors));
+
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+print("Rastgele sayı: " + Random.choice(numbers));
+
+// Karıştırma
+print("");
+print("--- Karıştırma ---");
+var cards = ["As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+print("Orijinal kartlar: " + cards.to_string());
+
+Random.shuffle(cards);
+print("Karıştırılmış: " + cards.to_string());
+
+// String üretimi
+print("");
+print("--- String Üretimi ---");
+print("Rastgele string (8 karakter): " + Random.string(8));
+print("Rastgele string (12 karakter): " + Random.string(12));
+
+print("Sadece rakamlar (6 karakter): " + Random.string_with_chars(6, "0123456789"));
+print("Sadece harfler (10 karakter): " + Random.string_with_chars(10, "abcdefghijklmnopqrstuvwxyz"));
+
+// UUID üretimi
+print("");
+print("--- UUID Üretimi ---");
+print("UUID 1: " + Random.uuid());
+print("UUID 2: " + Random.uuid());
+print("UUID 3: " + Random.uuid());
+
+// Bytes üretimi
+print("");
+print("--- Bytes Üretimi ---");
+var randomBytes = Random.bytes(8);
+print("8 rastgele byte: " + randomBytes.to_string());
+
+// Sampling (örnekleme)
+print("");
+print("--- Sampling (Örnekleme) ---");
+var population = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var sample3 = Random.sample(population, 3);
+var sample5 = Random.sample(population, 5);
+
+print("Popülasyon: " + population.to_string());
+print("3 örneklem: " + sample3.to_string());
+print("5 örneklem: " + sample5.to_string());
+
+// Dağılımlar
+print("");
+print("--- Dağılımlar ---");
+print("Normal dağılım (ortalama=0, std=1): " + Random.normal(0.0, 1.0));
+print("Normal dağılım (ortalama=100, std=15): " + Random.normal(100.0, 15.0));
+
+print("Exponential dağılım (lambda=1): " + Random.exponential(1.0));
+print("Exponential dağılım (lambda=0.5): " + Random.exponential(0.5));
+
+print("Uniform dağılım (5-15): " + Random.uniform(5.0, 15.0));
+
+// Oyun benzeri kullanımlar
+print("");
+print("--- Oyun Benzeri Kullanımlar ---");
+print("Zar atma (6 yüzlü): " + Random.dice(6));
+print("Zar atma (20 yüzlü): " + Random.dice(20));
+
+print("Yazı-tura: " + (Random.coin() ? "yazı" : "tura"));
+print("Yazı-tura: " + (Random.coin() ? "yazı" : "tura"));
+print("Yazı-tura: " + (Random.coin() ? "yazı" : "tura"));
+
+// Renk üretimi
+print("");
+print("--- Renk Üretimi ---");
+print("Rastgele hex renk: " + Random.color());
+print("Rastgele hex renk: " + Random.color());
+
+var rgb = Random.rgb();
+print("Rastgele RGB: (" + rgb.0 + ", " + rgb.1 + ", " + rgb.2 + ")");
+
+var hsl = Random.hsl();
+print("Rastgele HSL: (" + hsl.0 + "°, " + hsl.1 + "%, " + hsl.2 + "%)");
+
+// Kendi RNG instance'ı oluşturma
+print("");
+print("--- Özel RNG Instance ---");
+var rng1 = Rng.new(1000);
+var rng2 = Rng.new(2000);
+
+print("RNG1 (seed=1000): " + rng1.int(1, 100));
+print("RNG1 (seed=1000): " + rng1.int(1, 100));
+
+print("RNG2 (seed=2000): " + rng2.int(1, 100));
+print("RNG2 (seed=2000): " + rng2.int(1, 100));
+
+// Tekrar aynı seed ile
+var rng3 = Rng.new(1000);
+print("RNG3 (seed=1000): " + rng3.int(1, 100) + " (aynı olmalı)");
+
+// Weighted choice (ağırlıklı seçim)
+print("");
+print("--- Weighted Choice (Ağırlıklı Seçim) ---");
+var weightedChoice = WeightedChoice.new();
+weightedChoice.add("nadir", 1.0);     // %10 şans
+weightedChoice.add("sık", 5.0);       // %50 şans  
+weightedChoice.add("normal", 4.0);    // %40 şans
+
+print("Ağırlıklı seçimler:");
+for i = 0; i < 10; i = i + 1 {
+    print("  " + weightedChoice.choose_global());
+}
+
+print("");
+print("=== Random örneği tamamlandı ===");

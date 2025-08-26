@@ -1,0 +1,44 @@
+// Test advanced Nova features
+
+// Math operations
+print("Math operations:");
+print("2 ** 3 = " + str(2 ** 3));  // Power
+print("17 % 5 = " + str(17 % 5));  // Modulo
+print("abs(-42) = " + str(abs(-42)));
+print("sqrt(25) = " + str(sqrt(25)));
+print("pow(2, 8) = " + str(pow(2, 8)));
+
+// String operations
+print("\nString operations:");
+let text = "Hello, World!";
+print("Original: " + text);
+print("Upper: " + upper(text));
+print("Lower: " + lower(text));
+print("Substring: " + substr(text, 7, 5));
+let words = split(text, ", ");
+print("Split result: " + str(len(words)) + " parts");
+print("Contains 'World': " + str(contains(text, "World")));
+
+// Array operations
+print("\nArray operations:");
+let numbers = [3, 1, 4, 1, 5, 9];
+print("Original array: " + join(numbers, ", "));
+print("Sorted: " + join(sort(numbers), ", "));
+print("Reversed: " + join(reverse(numbers), ", "));
+print("Contains 5: " + str(contains(numbers, 5)));
+
+// Object operations
+let person = {
+    name: "Alice", 
+    age: 30, 
+    city: "Istanbul"
+};
+print("\nObject operations:");
+print("Name: " + person.name);
+print("Age: " + str(person.age));
+print("City via index: " + person["city"]);
+
+// Time
+print("\nTime:");
+let timestamp = now();
+print("Current timestamp: " + str(timestamp));

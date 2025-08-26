@@ -1,0 +1,253 @@
+// Array library for Nova
+// Array manipulation and utility functions
+
+fn array_map(array, func) {
+    let result = [];
+    for item in array {
+        result = push(result, func(item));
+    }
+    result
+}
+
+fn array_filter(array, predicate) {
+    let result = [];
+    for item in array {
+        if (predicate(item)) {
+            result = push(result, item);
+        }
+    }
+    result
+}
+
+fn array_reduce(array, func, initial) {
+    let accumulator = initial;
+    for item in array {
+        accumulator = func(accumulator, item);
+    }
+    accumulator
+}
+
+fn array_find(array, predicate) {
+    for item in array {
+        if (predicate(item)) {
+            return item;
+        }
+    }
+    null
+}
+
+fn array_find_index(array, predicate) {
+    let index = 0;
+    for item in array {
+        if (predicate(item)) {
+            return index;
+        }
+        index = index + 1;
+    }
+    -1
+}
+
+fn array_contains(array, value) {
+    for item in array {
+        if (item == value) {
+            return true;
+        }
+    }
+    false
+}
+
+fn array_reverse(array) {
+    let result = [];
+    let i = len(array) - 1;
+    while (i >= 0) {
+        result = push(result, array[i]);
+        i = i - 1;
+    }
+    result
+}
+
+fn array_slice(array, start, end) {
+    let result = [];
+    let array_len = len(array);
+    let actual_start = max(0, start);
+    let actual_end = min(array_len, end);
+    
+    let i = actual_start;
+    while (i < actual_end) {
+        result = push(result, array[i]);
+        i = i + 1;
+    }
+    result
+}
+
+fn array_concat(arrays) {
+    let result = [];
+    for array in arrays {
+        for item in array {
+            result = push(result, item);
+        }
+    }
+    result
+}
+
+fn array_flatten(array) {
+    let result = [];
+    for item in array {
+        if (type(item) == "array") {
+            let flattened = array_flatten(item);
+            for sub_item in flattened {
+                result = push(result, sub_item);
+            }
+        } else {
+            result = push(result, item);
+        }
+    }
+    result
+}
+
+fn array_unique(array) {
+    let result = [];
+    for item in array {
+        if (!array_contains(result, item)) {
+            result = push(result, item);
+        }
+    }
+    result
+}
+
+fn array_sort(array, compare_func) {
+    // Simple bubble sort implementation
+    let sorted = [];
+    for item in array {
+        sorted = push(sorted, item);
+    }
+    
+    let n = len(sorted);
+    let i = 0;
+    while (i < n - 1) {
+        let j = 0;
+        while (j < n - i - 1) {
+            if (compare_func(sorted[j], sorted[j + 1]) > 0) {
+                // Swap elements
+                let temp = sorted[j];
+                sorted[j] = sorted[j + 1];
+                sorted[j + 1] = temp;
+            }
+            j = j + 1;
+        }
+        i = i + 1;
+    }
+    sorted
+}
+
+fn array_sort_numbers(array) {
+    fn number_compare(a, b) {
+        if (a < b) {
+            -1
+        } else if (a > b) {
+            1
+        } else {
+            0
+        }
+    }
+    array_sort(array, number_compare)
+}
+
+fn array_sort_strings(array) {
+    fn string_compare(a, b) {
+        let a_str = str(a);
+        let b_str = str(b);
+        if (a_str < b_str) {
+            -1
+        } else if (a_str > b_str) {
+            1
+        } else {
+            0
+        }
+    }
+    array_sort(array, string_compare)
+}
+
+fn array_min(array) {
+    if (len(array) == 0) {
+        return null;
+    }
+    
+    let min_value = array[0];
+    for item in array {
+        if (item < min_value) {
+            min_value = item;
+        }
+    }
+    min_value
+}
+
+fn array_max(array) {
+    if (len(array) == 0) {
+        return null;
+    }
+    
+    let max_value = array[0];
+    for item in array {
+        if (item > max_value) {
+            max_value = item;
+        }
+    }
+    max_value
+}
+
+fn array_sum(array) {
+    let total = 0;
+    for item in array {
+        total = total + item;
+    }
+    total
+}
+
+fn array_average(array) {
+    if (len(array) == 0) {
+        return null;
+    }
+    array_sum(array) / len(array)
+}
+
+fn array_zip(array1, array2) {
+    let result = [];
+    let min_length = min(len(array1), len(array2));
+    
+    let i = 0;
+    while (i < min_length) {
+        result = push(result, [array1[i], array2[i]]);
+        i = i + 1;
+    }
+    result
+}
+
+fn array_enumerate(array) {
+    let result = [];
+    let index = 0;
+    for item in array {
+        result = push(result, [index, item]);
+        index = index + 1;
+    }
+    result
+}
+
+fn array_chunk(array, size) {
+    let result = [];
+    let current_chunk = [];
+    
+    for item in array {
+        current_chunk = push(current_chunk, item);
+        if (len(current_chunk) == size) {
+            result = push(result, current_chunk);
+            current_chunk = [];
+        }
+    }
+    
+    if (len(current_chunk) > 0) {
+        result = push(result, current_chunk);
+    }
+    
+    result
+}

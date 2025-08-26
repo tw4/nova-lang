@@ -1,0 +1,33 @@
+// Nova Class System Test
+
+// Define a simple class
+class Person {
+    fn constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    fn greet() {
+        print("Type of this: " + type(this));
+        print("Greeting from method");
+    }
+
+    fn birthday() {
+        this.age = this.age + 1;
+        print(this.name + " is now " + str(this.age) + " years old!");
+    }
+
+    static fn species() {
+        "Homo sapiens"
+    }
+}
+
+// Create an instance
+let john = new Person("John", 30);
+john.greet();
+
+john.birthday();
+john.greet();
+
+// Test static method
+print("Species: " + Person.species());

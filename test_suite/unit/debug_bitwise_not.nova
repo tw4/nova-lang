@@ -1,0 +1,5 @@
+// Test bitwise NOT
+
+let a = 5;
+let not_a = ~a;
+print("~5 = " + str(not_a));

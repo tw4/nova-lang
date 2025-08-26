@@ -1,0 +1,7 @@
+// Test better error messages
+
+print("Testing error messages:");
+
+// This should cause a division by zero error
+let result = 10 / 0;
+print("Result: " + str(result));

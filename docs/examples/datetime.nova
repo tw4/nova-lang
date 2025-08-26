@@ -1,0 +1,139 @@
+// DateTime örneği - Nova'da tarih ve zaman işlemleri
+print("=== Nova DateTime Örneği ===");
+print("");
+
+// Şu anki zamanı al
+print("--- Şu Anki Zaman ---");
+var now = DateTime.now();
+print("Şu an: " + now.to_string());
+print("ISO formatı: " + now.to_iso_string());
+print("Unix timestamp: " + now.timestamp());
+print("Milisaniye timestamp: " + now.timestamp_millis());
+
+print("");
+print("--- Tarih Bileşenleri ---");
+print("Yıl: " + now.year());
+print("Ay: " + now.month());
+print("Gün: " + now.day());
+print("Saat: " + now.hour());
+print("Dakika: " + now.minute());
+print("Saniye: " + now.second());
+print("Milisaniye: " + now.millisecond());
+print("Haftanın günü: " + now.weekday() + " (0=Pazar, 1=Pazartesi, ...)");
+
+// Belirli bir tarih oluştur
+print("");
+print("--- Belirli Tarih Oluşturma ---");
+var birthday = DateTime.from_ymd_hms(1990, 5, 15, 14, 30, 0);
+if birthday != nil {
+    print("Doğum tarihi: " + birthday.to_string());
+    print("Doğum yılı: " + birthday.year());
+    print("Artık yıl mı? " + birthday.is_leap_year());
+} else {
+    print("Geçersiz tarih!");
+}
+
+var newYear = DateTime.from_ymd_hms(2024, 1, 1, 0, 0, 0);
+if newYear != nil {
+    print("2024 Yeni Yıl: " + newYear.to_string());
+    print("2024 artık yıl mı? " + newYear.is_leap_year());
+}
+
+// Tarih işlemleri
+print("");
+print("--- Tarih İşlemleri ---");
+print("Şu an: " + now.to_string());
+
+var oneHourLater = now.add_hours(1);
+print("1 saat sonra: " + oneHourLater.to_string());
+
+var oneWeekLater = now.add_days(7);
+print("1 hafta sonra: " + oneWeekLater.to_string());
+
+var oneMonthAgo = now.add_days(-30);
+print("30 gün önce: " + oneMonthAgo.to_string());
+
+// Tarih farkları
+print("");
+print("--- Tarih Farkları ---");
+var christmas = DateTime.from_ymd_hms(2024, 12, 25, 0, 0, 0);
+if christmas != nil && now != nil {
+    var diffSeconds = christmas.diff_seconds(now);
+    var diffDays = diffSeconds / (24 * 60 * 60);
+    print("Noel'e kalan saniye: " + diffSeconds);
+    print("Noel'e kalan gün: " + diffDays);
+}
+
+// Timestamp'ten tarih oluşturma
+print("");
+print("--- Timestamp'ten Tarih ---");
+var unixEpoch = DateTime.from_timestamp(0);
+print("Unix Epoch (1 Ocak 1970): " + unixEpoch.to_string());
+
+var millennium = DateTime.from_timestamp(946684800); // 1 Ocak 2000
+print("Milenyum (1 Ocak 2000): " + millennium.to_string());
+
+// Duration kullanımı
+print("");
+print("--- Duration (Süre) ---");
+var duration1 = Duration.from_hours(2);
+print("2 saatlik süre: " + duration1.to_string());
+print("Toplam dakika: " + duration1.total_minutes());
+print("Toplam saniye: " + duration1.total_seconds());
+
+var duration2 = Duration.from_minutes(30);
+print("30 dakikalık süre: " + duration2.to_string());
+
+var totalDuration = duration1.add(duration2);
+print("Toplam süre: " + totalDuration.to_string());
+
+var halfDuration = totalDuration.divide(2.0);
+print("Yarısı: " + halfDuration.to_string());
+
+// Formatlar ve parse işlemleri
+print("");
+print("--- Format ve Parse ---");
+var isoString = "2024-03-15T14:30:45.123Z";
+var parsedDate = DateTime.parse_iso(isoString);
+if parsedDate != nil {
+    print("Parse edilen tarih: " + parsedDate.to_string());
+    print("Orijinal ISO: " + isoString);
+    print("Yeniden ISO: " + parsedDate.to_iso_string());
+} else {
+    print("ISO string parse edilemedi!");
+}
+
+// Tarih sabitleri ve yardımcılar
+print("");
+print("--- Tarih Sabitleri ---");
+var dayNames = DateTime.day_names();
+var monthNames = DateTime.month_names();
+
+print("Günler:");
+for i = 0; i < dayNames.len(); i = i + 1 {
+    print("  " + i + ": " + dayNames.get(i));
+}
+
+print("Aylar:");
+for i = 0; i < monthNames.len(); i = i + 1 {
+    print("  " + (i + 1) + ": " + monthNames.get(i));
+}
+
+// Hızlı zaman damgası
+print("");
+print("--- Hızlı Zaman Damgası ---");
+print("Şu anki timestamp: " + DateTime.timestamp());
+print("Şu anki milisaniye: " + DateTime.timestamp_millis());
+
+// Artık yıl kontrolü
+print("");
+print("--- Artık Yıl Kontrolü ---");
+var testYears = [2000, 2001, 2004, 1900, 2024];
+for i = 0; i < testYears.len(); i = i + 1 {
+    var year = testYears.get(i);
+    var isLeap = DateTime.is_leap_year_value(year);
+    print(year + " artık yıl mı? " + isLeap);
+}
+
+print("");
+print("=== DateTime örneği tamamlandı ===");

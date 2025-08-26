@@ -1,0 +1,73 @@
+// String utility functions for Nova standard library
+
+fn is_empty(str) {
+    len(str) == 0
+}
+
+fn starts_with(str, prefix) {
+    if (len(prefix) > len(str)) {
+        false
+    } else {
+        substr(str, 0, len(prefix)) == prefix
+    }
+}
+
+fn ends_with(str, suffix) {
+    let str_len = len(str);
+    let suffix_len = len(suffix);
+    if (suffix_len > str_len) {
+        false
+    } else {
+        substr(str, str_len - suffix_len, suffix_len) == suffix
+    }
+}
+
+fn repeat(str, count) {
+    let result = "";
+    let i = 0;
+    while (i < count) {
+        result = result + str;
+        i = i + 1;
+    }
+    result
+}
+
+fn reverse_string(str) {
+    let result = "";
+    let i = len(str) - 1;
+    while (i >= 0) {
+        result = result + substr(str, i, 1);
+        i = i - 1;
+    }
+    result
+}
+
+fn pad_left(str, width, char) {
+    let str_len = len(str);
+    if (str_len >= width) {
+        str
+    } else {
+        repeat(char, width - str_len) + str
+    }
+}
+
+fn pad_right(str, width, char) {
+    let str_len = len(str);
+    if (str_len >= width) {
+        str
+    } else {
+        str + repeat(char, width - str_len)
+    }
+}
+
+fn center(str, width, char) {
+    let str_len = len(str);
+    if (str_len >= width) {
+        str
+    } else {
+        let padding = width - str_len;
+        let left_pad = padding / 2;
+        let right_pad = padding - left_pad;
+        repeat(char, left_pad) + str + repeat(char, right_pad)
+    }
+}

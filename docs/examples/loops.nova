@@ -1,0 +1,68 @@
+// Loop (Döngü) örnekleri
+
+// While loop
+print("=== While Loop ===");
+let counter = 1;
+while (counter <= 5) {
+    print("Counter: " + counter);
+    counter = counter + 1;
+}
+
+// For loop with arrays
+print("=== For Loop with Arrays ===");
+let colors = ["kırmızı", "mavi", "yeşil", "sarı"];
+for color in colors {
+    print("Renk: " + color);
+}
+
+// For loop with strings
+print("=== For Loop with Strings ===");
+let word = "merhaba";
+for char in word {
+    print("Harf: " + char);
+}
+
+// Nested loops
+print("=== Nested Loops ===");
+let grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+for row in grid {
+    let row_str = "";
+    for cell in row {
+        row_str = row_str + cell + " ";
+    }
+    print("Satır: " + row_str);
+}
+
+// Loop ile hesaplama
+print("=== Factorial with While ===");
+fn factorial_while(n) {
+    let result = 1;
+    let i = 1;
+    while (i <= n) {
+        result = result * i;
+        i = i + 1;
+    }
+    result;
+}
+
+print("5! = " + factorial_while(5));
+
+// Loop ile array işleme
+print("=== Array Processing ===");
+let nums = [1, 2, 3, 4, 5];
+let sum = 0;
+for num in nums {
+    sum = sum + num;
+}
+print("Toplam: " + sum);
+
+// Loop ile filtreleme
+print("=== Filtering with Loop ===");
+let all_nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let evens = [];
+for num in all_nums {
+    if (num % 2 == 0) {
+        evens = push(evens, num);
+    }
+}
+print("Çift sayılar: " + evens);

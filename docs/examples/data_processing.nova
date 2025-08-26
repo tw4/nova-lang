@@ -1,0 +1,78 @@
+// Data Processing Example - JSON and File I/O
+
+print("=== Data Processing with Nova ===");
+
+// Create sample data
+let employees = {
+    company: "Tech Corp",
+    employees: [
+        {name: "Alice", department: "Engineering", salary: 75000},
+        {name: "Bob", department: "Marketing", salary: 65000},
+        {name: "Charlie", department: "Engineering", salary: 80000},
+        {name: "Diana", department: "HR", salary: 60000}
+    ]
+};
+
+print("Company: " + employees.company);
+
+// Calculate statistics using built-in functions
+let salaries = [];
+let emp_list = employees.employees;
+print("Total employees: " + str(len(emp_list)));
+for emp in emp_list {
+    salaries = push(salaries, emp.salary);
+}
+
+print("Salaries: [" + join(salaries, ", ") + "]");
+
+// Math operations
+let total_salary = 0;
+for salary in salaries {
+    total_salary = total_salary + salary;
+}
+
+let avg_salary = total_salary / len(salaries);
+let min_salary = sort(salaries)[0];
+let max_salary = reverse(sort(salaries))[0];
+
+print("Total payroll: $" + str(total_salary));
+print("Average salary: $" + str(avg_salary));
+print("Salary range: $" + str(min_salary) + " - $" + str(max_salary));
+
+// String operations - department analysis
+let departments = [];
+for emp in emp_list {
+    let dept = emp.department;
+    if (!contains(departments, dept)) {
+        departments = push(departments, dept);
+    }
+}
+
+print("Departments: [" + join(departments, ", ") + "]");
+
+// Export data to JSON file
+let json_data = json_stringify(employees);
+write_file("employees.json", json_data);
+print("Data exported to employees.json");
+
+// Read and parse back
+let file_content = read_file("employees.json");
+let parsed_data = json_parse(file_content);
+print("Data successfully read and parsed");
+print("First employee: " + parsed_data.employees[0].name);
+
+// Generate report
+let report = "=== EMPLOYEE REPORT ===\n";
+report = report + "Company: " + employees.company + "\n";
+report = report + "Generated: " + str(now()) + "\n\n";
+
+for emp in emp_list {
+    report = report + emp.name + " (" + emp.department + ") - $" + str(emp.salary) + "\n";
+}
+
+report = report + "\nSUMMARY:\n";
+report = report + "Total Employees: " + str(len(emp_list)) + "\n";
+report = report + "Average Salary: $" + str(avg_salary) + "\n";
+
+write_file("report.txt", report);
+print("Report generated: report.txt");

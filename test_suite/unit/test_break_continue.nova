@@ -1,0 +1,66 @@
+// Test break and continue in loops
+
+print("=== Break/Continue Tests ===");
+
+// Test break in for loop
+print("For loop with break:");
+for i in [1, 2, 3, 4, 5] {
+    if (i == 3) {
+        print("Breaking at: " + str(i));
+        break;
+    }
+    print("Processing: " + str(i));
+}
+
+// Test continue in for loop  
+print("\nFor loop with continue:");
+for i in [1, 2, 3, 4, 5] {
+    if (i == 3) {
+        print("Skipping: " + str(i));
+        continue;
+    }
+    print("Processing: " + str(i));
+}
+
+// Test break in while loop
+print("\nWhile loop with break:");
+let count = 0;
+while (count < 10) {
+    count = count + 1;
+    if (count == 4) {
+        print("Breaking at count: " + str(count));
+        break;
+    }
+    print("Count: " + str(count));
+}
+
+// Test continue in while loop
+print("\nWhile loop with continue:");
+let num = 0;
+while (num < 5) {
+    num = num + 1;
+    if (num == 3) {
+        print("Skipping number: " + str(num));
+        continue;
+    }
+    print("Number: " + str(num));
+}
+
+// Test nested loops with break/continue
+print("\nNested loops:");
+for i in [1, 2, 3] {
+    print("Outer loop i: " + str(i));
+    for j in [1, 2, 3] {
+        if (j == 2) {
+            print("  Inner continue j: " + str(j));
+            continue;
+        }
+        if (i == 2 and j == 3) {
+            print("  Inner break j: " + str(j));
+            break;
+        }
+        print("  Inner j: " + str(j));
+    }
+}
+
+print("\nBreak/continue tests completed!");

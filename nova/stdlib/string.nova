@@ -1,0 +1,237 @@
+// String library for Nova
+// String manipulation and utility functions
+
+fn string_concat(strings) {
+    let result = "";
+    for s in strings {
+        result = result + str(s);
+    }
+    result
+}
+
+fn string_repeat(s, n) {
+    let result = "";
+    let i = 0;
+    while (i < n) {
+        result = result + s;
+        i = i + 1;
+    }
+    result
+}
+
+fn string_reverse(s) {
+    let result = "";
+    let i = len(s) - 1;
+    while (i >= 0) {
+        result = result + s[i];
+        i = i - 1;
+    }
+    result
+}
+
+fn string_upper(s) {
+    // Simple uppercase conversion for ASCII
+    let result = "";
+    for char in s {
+        let code = char_code(char);  // Future built-in function
+        if (code >= 97 and code <= 122) {  // 'a' to 'z'
+            result = result + char_from_code(code - 32);  // Convert to uppercase
+        } else {
+            result = result + char;
+        }
+    }
+    result
+}
+
+fn string_lower(s) {
+    // Simple lowercase conversion for ASCII
+    let result = "";
+    for char in s {
+        let code = char_code(char);  // Future built-in function
+        if (code >= 65 and code <= 90) {  // 'A' to 'Z'
+            result = result + char_from_code(code + 32);  // Convert to lowercase
+        } else {
+            result = result + char;
+        }
+    }
+    result
+}
+
+fn string_contains(haystack, needle) {
+    let haystack_len = len(haystack);
+    let needle_len = len(needle);
+    
+    if (needle_len > haystack_len) {
+        false
+    } else if (needle_len == 0) {
+        true
+    } else {
+        let i = 0;
+        while (i <= haystack_len - needle_len) {
+            let match = true;
+            let j = 0;
+            while (j < needle_len and match) {
+                if (haystack[i + j] != needle[j]) {
+                    match = false;
+                }
+                j = j + 1;
+            }
+            if (match) {
+                return true;
+            }
+            i = i + 1;
+        }
+        false
+    }
+}
+
+fn string_starts_with(s, prefix) {
+    let prefix_len = len(prefix);
+    let s_len = len(s);
+    
+    if (prefix_len > s_len) {
+        false
+    } else {
+        let i = 0;
+        while (i < prefix_len) {
+            if (s[i] != prefix[i]) {
+                return false;
+            }
+            i = i + 1;
+        }
+        true
+    }
+}
+
+fn string_ends_with(s, suffix) {
+    let suffix_len = len(suffix);
+    let s_len = len(s);
+    
+    if (suffix_len > s_len) {
+        false
+    } else {
+        let offset = s_len - suffix_len;
+        let i = 0;
+        while (i < suffix_len) {
+            if (s[offset + i] != suffix[i]) {
+                return false;
+            }
+            i = i + 1;
+        }
+        true
+    }
+}
+
+fn string_slice(s, start, end) {
+    let result = "";
+    let s_len = len(s);
+    let actual_start = max(0, start);
+    let actual_end = min(s_len, end);
+    
+    let i = actual_start;
+    while (i < actual_end) {
+        result = result + s[i];
+        i = i + 1;
+    }
+    result
+}
+
+fn string_split(s, delimiter) {
+    let result = [];
+    let current = "";
+    let delimiter_len = len(delimiter);
+    let s_len = len(s);
+    
+    if (delimiter_len == 0) {
+        // Split into characters
+        for char in s {
+            result = push(result, char);
+        }
+        return result;
+    }
+    
+    let i = 0;
+    while (i < s_len) {
+        let found_delimiter = true;
+        let j = 0;
+        while (j < delimiter_len and found_delimiter) {
+            if (i + j >= s_len or s[i + j] != delimiter[j]) {
+                found_delimiter = false;
+            }
+            j = j + 1;
+        }
+        
+        if (found_delimiter) {
+            result = push(result, current);
+            current = "";
+            i = i + delimiter_len;
+        } else {
+            current = current + s[i];
+            i = i + 1;
+        }
+    }
+    
+    result = push(result, current);
+    result
+}
+
+fn string_join(array, separator) {
+    let result = "";
+    let len_array = len(array);
+    
+    let i = 0;
+    while (i < len_array) {
+        if (i > 0) {
+            result = result + separator;
+        }
+        result = result + str(array[i]);
+        i = i + 1;
+    }
+    result
+}
+
+fn string_trim(s) {
+    // Remove whitespace from both ends
+    let start = 0;
+    let end = len(s) - 1;
+    
+    // Find first non-whitespace character
+    while (start <= end and is_whitespace(s[start])) {
+        start = start + 1;
+    }
+    
+    // Find last non-whitespace character
+    while (end >= start and is_whitespace(s[end])) {
+        end = end - 1;
+    }
+    
+    if (start > end) {
+        ""
+    } else {
+        string_slice(s, start, end + 1)
+    }
+}
+
+fn is_whitespace(char) {
+    char == " " or char == "\t" or char == "\n" or char == "\r"
+}
+
+fn string_pad_left(s, length, pad_char) {
+    let s_len = len(s);
+    if (s_len >= length) {
+        s
+    } else {
+        let pad_count = length - s_len;
+        string_repeat(pad_char, pad_count) + s
+    }
+}
+
+fn string_pad_right(s, length, pad_char) {
+    let s_len = len(s);
+    if (s_len >= length) {
+        s
+    } else {
+        let pad_count = length - s_len;
+        s + string_repeat(pad_char, pad_count)
+    }
+}
