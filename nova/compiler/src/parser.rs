@@ -821,6 +821,7 @@ impl Parser {
         self.consume(Token::LeftBrace, "Expected '{' before class body")?;
 
         let mut methods = Vec::new();
+        let mut constructor = None;
         
         while !self.check(&Token::RightBrace) && !self.check(&Token::Eof) {
             // Skip newlines in class body
@@ -828,13 +829,50 @@ impl Parser {
                 continue;
             }
 
-            // Parse method (function inside class)
+            // Parse visibility
+            let visibility = if self.match_token(&Token::Private) {
+                Visibility::Private
+            } else if self.match_token(&Token::Public) {
+                Visibility::Public
+            } else {
+                Visibility::Public // default
+            };
+
+            // Parse static modifier
             let is_static = self.match_token(&Token::Static);
             
-            if self.match_token(&Token::Fn) {
+            // Parse constructor or method
+            if self.match_token(&Token::Constructor) {
+                self.consume(Token::LeftParen, "Expected '(' after constructor")?;
+
+                let mut params = Vec::new();
+                while !self.check(&Token::RightParen) {
+                    match self.current_token() {
+                        Token::Identifier(param) => {
+                            params.push(param.clone());
+                            self.advance();
+                        }
+                        _ => return Err(ParseError::UnexpectedToken("Expected parameter name".to_string())),
+                    }
+
+                    if !self.check(&Token::RightParen) {
+                        self.consume(Token::Comma, "Expected ',' between parameters")?;
+                    }
+                }
+
+                self.consume(Token::RightParen, "Expected ')' after parameters")?;
+                let body = self.expression()?;
+
+                constructor = Some(ClassMethod {
+                    name: "constructor".to_string(),
+                    params,
+                    body,
+                    visibility,
+                    is_static: false, // constructors can't be static
+                });
+            } else if self.match_token(&Token::Fn) {
                 let method_name = match self.current_token() {
                     Token::Identifier(name) => name.clone(),
-                    Token::Constructor => "constructor".to_string(),
                     _ => return Err(ParseError::UnexpectedToken("Expected method name".to_string())),
                 };
                 self.advance();
@@ -859,21 +897,17 @@ impl Parser {
                 self.consume(Token::RightParen, "Expected ')' after parameters")?;
                 let body = self.expression()?;
 
-                let method = if is_static {
-                    Stmt::Function {
-                        name: format!("static_{}", method_name),
-                        params,
-                        body,
-                    }
-                } else {
-                    Stmt::Function {
-                        name: method_name,
-                        params,
-                        body,
-                    }
+                let method = ClassMethod {
+                    name: method_name,
+                    params,
+                    body,
+                    visibility,
+                    is_static,
                 };
 
                 methods.push(method);
+            } else {
+                return Err(ParseError::UnexpectedToken("Expected method or constructor in class body".to_string()));
             }
         }
 
@@ -883,6 +917,7 @@ impl Parser {
             name,
             superclass,
             methods,
+            constructor,
         })
     }
 }

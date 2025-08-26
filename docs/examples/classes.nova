@@ -1,0 +1,120 @@
+// Nova Class Examples
+
+// Basic class definition
+class Person {
+    // Constructor
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Public method
+    fn greet() {
+        return "Hello, I'm " + this.name + " and I'm " + str(this.age) + " years old";
+    }
+
+    // Private method
+    private fn getPrivateInfo() {
+        return "Secret information about " + this.name;
+    }
+
+    // Static method
+    static fn getSpecies() {
+        return "Homo sapiens";
+    }
+}
+
+// Create instances
+let alice = new Person("Alice", 25);
+let bob = new Person("Bob", 30);
+
+// Use instance methods
+print(alice.greet());
+print(bob.greet());
+
+// Use static methods
+print(Person.getSpecies());
+
+// Inheritance example
+class Student extends Person {
+    constructor(name, age, school) {
+        // Call parent constructor via super
+        super(name, age);
+        this.school = school;
+    }
+
+    fn study() {
+        return this.name + " is studying at " + this.school;
+    }
+
+    // Override parent method
+    fn greet() {
+        return "Hi! I'm " + this.name + ", a student at " + this.school;
+    }
+}
+
+// Create student instance
+let charlie = new Student("Charlie", 20, "Nova University");
+
+// Test inheritance
+print(charlie.greet());
+print(charlie.study());
+
+// Access parent class methods through super
+class Teacher extends Person {
+    constructor(name, age, subject) {
+        super(name, age);
+        this.subject = subject;
+    }
+
+    fn teach() {
+        return this.name + " teaches " + this.subject;
+    }
+
+    fn greet() {
+        // Call parent greet method
+        let parentGreeting = super.greet();
+        return parentGreeting + " and I teach " + this.subject;
+    }
+}
+
+let teacher = new Teacher("Dr. Smith", 45, "Computer Science");
+print(teacher.teach());
+print(teacher.greet());
+
+// Demonstrate encapsulation
+class BankAccount {
+    constructor(accountNumber, initialBalance) {
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+    }
+
+    public fn deposit(amount) {
+        if (amount > 0) {
+            this.balance = this.balance + amount;
+            return "Deposited " + str(amount) + ". New balance: " + str(this.balance);
+        }
+        return "Invalid deposit amount";
+    }
+
+    public fn withdraw(amount) {
+        if (this.validateWithdrawal(amount)) {
+            this.balance = this.balance - amount;
+            return "Withdrew " + str(amount) + ". New balance: " + str(this.balance);
+        }
+        return "Insufficient funds or invalid amount";
+    }
+
+    public fn getBalance() {
+        return this.balance;
+    }
+
+    private fn validateWithdrawal(amount) {
+        return amount > 0 and amount <= this.balance;
+    }
+}
+
+let account = new BankAccount("12345", 1000);
+print(account.deposit(500));
+print(account.withdraw(200));
+print("Current balance: " + str(account.getBalance()));

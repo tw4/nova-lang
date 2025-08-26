@@ -86,8 +86,8 @@ impl Interpreter {
             Stmt::Import { module, alias } => {
                 self.import_module(module, alias.as_ref())
             }
-            Stmt::Class { name, superclass, methods } => {
-                self.define_class(name, superclass.as_ref(), methods)
+            Stmt::Class { name, superclass, methods, constructor } => {
+                self.define_class(name, superclass.as_ref(), methods, constructor.as_ref())
             }
             Stmt::Break => {
                 Err(RuntimeError::Break)
@@ -1155,7 +1155,7 @@ impl Interpreter {
         }
     }
 
-    fn define_class(&mut self, name: &str, superclass: Option<&String>, methods: &[Stmt]) -> RuntimeResult<Option<Value>> {
+    fn define_class(&mut self, name: &str, superclass: Option<&String>, methods: &[ClassMethod], constructor: Option<&ClassMethod>) -> RuntimeResult<Option<Value>> {
         // Handle superclass
         let superclass_value = if let Some(superclass_name) = superclass {
             match self.environment.get(superclass_name) {
@@ -1170,36 +1170,38 @@ impl Interpreter {
         // Process methods
         let mut class_methods = HashMap::new();
         let mut static_methods = HashMap::new();
-        let mut constructor = None;
 
         for method in methods {
-            match method {
-                Stmt::Function { name: method_name, params, body } => {
-                    let method_value = Value::Function {
-                        params: params.clone(),
-                        body: body.clone(),
-                        closure: self.environment.clone(),
-                    };
+            let method_value = Value::Function {
+                params: method.params.clone(),
+                body: method.body.clone(),
+                closure: self.environment.clone(),
+            };
 
-                    if method_name.starts_with("static_") {
-                        let static_name = method_name.strip_prefix("static_").unwrap();
-                        static_methods.insert(static_name.to_string(), method_value);
-                    } else if method_name == "constructor" {
-                        constructor = Some(Box::new(method_value));
-                    } else {
-                        class_methods.insert(method_name.clone(), method_value);
-                    }
-                }
-                _ => return Err(RuntimeError::InvalidOperation("Invalid method definition in class".to_string())),
+            if method.is_static {
+                static_methods.insert(method.name.clone(), method_value);
+            } else {
+                class_methods.insert(method.name.clone(), method_value);
             }
         }
+
+        // Process constructor
+        let constructor_value = if let Some(ctor) = constructor {
+            Some(Box::new(Value::Function {
+                params: ctor.params.clone(),
+                body: ctor.body.clone(),
+                closure: self.environment.clone(),
+            }))
+        } else {
+            None
+        };
 
         let class = Value::Class {
             name: name.to_string(),
             superclass: superclass_value,
             methods: class_methods,
             static_methods,
-            constructor,
+            constructor: constructor_value,
         };
 
         self.environment.define(name.to_string(), class);

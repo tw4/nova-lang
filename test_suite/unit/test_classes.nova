@@ -1,32 +1,129 @@
-// Nova Class System Test
+// Test cases for Nova class system
 
-// Define a simple class
-class Person {
-    fn constructor(name, age) {
-        this.name = name;
-        this.age = age;
+// Test 1: Basic class instantiation
+class TestClass {
+    constructor(value) {
+        this.value = value;
     }
 
-    fn greet() {
-        print("Type of this: " + type(this));
-        print("Greeting from method");
-    }
-
-    fn birthday() {
-        this.age = this.age + 1;
-        print(this.name + " is now " + str(this.age) + " years old!");
-    }
-
-    static fn species() {
-        "Homo sapiens"
+    fn getValue() {
+        return this.value;
     }
 }
 
-// Create an instance
-let john = new Person("John", 30);
-john.greet();
-john.birthday();
-john.greet();
+let obj = new TestClass(42);
+print("Test 1 - Basic instantiation: " + str(obj.getValue())); // Should print 42
 
-// Test static method
-print("Species: " + Person.species());
+// Test 2: Static methods
+class MathUtils {
+    static fn add(a, b) {
+        return a + b;
+    }
+
+    static fn multiply(a, b) {
+        return a * b;
+    }
+}
+
+print("Test 2 - Static methods: " + str(MathUtils.add(5, 3))); // Should print 8
+print("Test 2 - Static multiply: " + str(MathUtils.multiply(4, 7))); // Should print 28
+
+// Test 3: Inheritance
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    fn speak() {
+        return this.name + " makes a sound";
+    }
+}
+
+class Dog extends Animal {
+    constructor(name, breed) {
+        super(name);
+        this.breed = breed;
+    }
+
+    fn speak() {
+        return this.name + " barks";
+    }
+
+    fn getBreed() {
+        return this.breed;
+    }
+}
+
+let dog = new Dog("Buddy", "Golden Retriever");
+print("Test 3 - Inheritance: " + dog.speak()); // Should print "Buddy barks"
+print("Test 3 - Dog breed: " + dog.getBreed()); // Should print "Golden Retriever"
+
+// Test 4: Private methods (should be accessible only within class)
+class SecretKeeper {
+    constructor(secret) {
+        this.secret = secret;
+    }
+
+    public fn revealHint() {
+        return this.getHint();
+    }
+
+    private fn getHint() {
+        return "The secret starts with: " + this.secret[0];
+    }
+}
+
+let keeper = new SecretKeeper("password123");
+print("Test 4 - Private method via public: " + keeper.revealHint());
+
+// Test 5: Multiple instances maintain separate state
+class Counter {
+    constructor() {
+        this.count = 0;
+    }
+
+    fn increment() {
+        this.count = this.count + 1;
+        return this.count;
+    }
+
+    fn getCount() {
+        return this.count;
+    }
+}
+
+let counter1 = new Counter();
+let counter2 = new Counter();
+
+counter1.increment();
+counter1.increment();
+counter2.increment();
+
+print("Test 5 - Counter1: " + str(counter1.getCount())); // Should print 2
+print("Test 5 - Counter2: " + str(counter2.getCount())); // Should print 1
+
+// Test 6: Method chaining
+class Builder {
+    constructor() {
+        this.parts = [];
+    }
+
+    fn addPart(part) {
+        push(this.parts, part);
+        return this; // Return this for chaining
+    }
+
+    fn build() {
+        return join(this.parts, " + ");
+    }
+}
+
+let result = new Builder()
+    .addPart("Part A")
+    .addPart("Part B")
+    .addPart("Part C")
+    .build();
+
+print("Test 6 - Method chaining: " + result); // Should print "Part A + Part B + Part C"
+
+print("All class tests completed!");

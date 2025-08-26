@@ -31,3 +31,4 @@ dist/
 
 # Installation files
 INSTALLATION.md
+editor_support/vscode/node_modules

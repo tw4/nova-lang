@@ -80,7 +80,9 @@ connection.onInitialized(() => {
 // Nova language keywords and built-ins
 const novaKeywords = [
 	'let', 'fn', 'if', 'else', 'while', 'for', 'in', 'return',
-	'true', 'false', 'null', 'and', 'or', 'not'
+	'true', 'false', 'null', 'and', 'or', 'not',
+	'class', 'extends', 'super', 'this', 'constructor',
+	'private', 'public', 'static', 'new'
 ];
 
 const novaBuiltins = [

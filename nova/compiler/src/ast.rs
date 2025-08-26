@@ -83,7 +83,8 @@ pub enum Stmt {
     Class {
         name: String,
         superclass: Option<String>,
-        methods: Vec<Stmt>,
+        methods: Vec<ClassMethod>,
+        constructor: Option<ClassMethod>,
     },
     Break,
     Continue,
@@ -180,6 +181,21 @@ impl SourceLocation {
             file: None,
         }
     }
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct ClassMethod {
+    pub name: String,
+    pub params: Vec<String>,
+    pub body: Expr,
+    pub visibility: Visibility,
+    pub is_static: bool,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum Visibility {
+    Public,
+    Private,
 }
 
 impl std::fmt::Display for SourceLocation {

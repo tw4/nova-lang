@@ -1,8 +1,8 @@
 {
     "name": "nova-language",
     "displayName": "Nova Language Extension by tw4",
-    "description": "Full language support for Nova programming language with auto-completion, hover documentation, and error checking (.nova files)",
-    "version": "0.2.0",
+    "description": "Complete Nova language support with classes, inheritance, auto-completion, hover docs, and error checking (.nova files)",
+    "version": "0.3.0",
     "publisher": "tw4",
     "author": "tw4",
     "license": "MIT",
