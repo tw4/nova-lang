@@ -3,6 +3,24 @@
     "displayName": "Nova Language Support",
     "description": "Syntax highlighting and language support for Nova programming language",
     "version": "0.1.0",
+    "publisher": "tw4",
+    "author": "tw4",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tw4/nova-lang.git"
+    },
+    "homepage": "https://github.com/tw4/nova-lang",
+    "bugs": {
+        "url": "https://github.com/tw4/nova-lang/issues"
+    },
+    "keywords": [
+        "nova",
+        "programming",
+        "language",
+        "syntax",
+        "highlighting"
+    ],
     "engines": {
         "vscode": "^1.74.0"
     },
