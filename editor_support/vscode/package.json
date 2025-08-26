@@ -1,8 +1,8 @@
 {
     "name": "nova-language",
     "displayName": "Nova Language Extension by tw4",
-    "description": "Syntax highlighting, auto-indentation and language support for Nova programming language (.nova files)",
-    "version": "0.1.0",
+    "description": "Full language support for Nova programming language with auto-completion, hover documentation, and error checking (.nova files)",
+    "version": "0.2.0",
     "publisher": "tw4",
     "author": "tw4",
     "license": "MIT",
@@ -52,5 +52,15 @@
     "main": "./extension.js",
     "activationEvents": [
         "onLanguage:nova"
-    ]
+    ],
+    "scripts": {
+        "compile": "cd server && npm install && npm run compile",
+        "postinstall": "cd server && npm install"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^8.1.0"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.74.0"
+    }
 }

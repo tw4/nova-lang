@@ -1,0 +1,26 @@
+{
+  "name": "nova-language-server",
+  "description": "Nova Language Server",
+  "version": "0.1.0",
+  "author": "tw4",
+  "license": "MIT",
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tw4/nova-lang"
+  },
+  "dependencies": {
+    "vscode-languageserver": "^8.1.0",
+    "vscode-languageserver-textdocument": "^1.0.8"
+  },
+  "scripts": {
+    "compile": "tsc -b",
+    "watch": "tsc -b -w"
+  },
+  "devDependencies": {
+    "@types/node": "^18.x",
+    "typescript": "^5.0.0"
+  }
+}

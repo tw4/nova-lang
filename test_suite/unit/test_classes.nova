@@ -25,7 +25,6 @@ class Person {
 // Create an instance
 let john = new Person("John", 30);
 john.greet();
-
 john.birthday();
 john.greet();
 

@@ -1,0 +1,20 @@
+// Test file for Nova Language Server
+let message = "Hello from Nova!";
+print(message);
+
+let numbers = [1, 2, 3, 4, 5];
+let length = len(numbers);
+print("Array length: " + str(length));
+
+fn greet(name) {
+    return "Hello, " + name + "!";
+}
+
+let greeting = greet("Nova");
+print(greeting);
+
+// Test hover on built-in functions
+let text = "Nova Language";
+let parts = split(text, " ");
+let joined = join(parts, "-");
+print(joined);

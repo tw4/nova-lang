@@ -9,3 +9,11 @@ vsc-extension-quickstart.md
 **/tslint.json
 **/*.map
 **/*.ts
+server/node_modules/**
+server/src/**
+server/tsconfig.json
+server/package-lock.json
+*.vsix
+TROUBLESHOOTING.md
+PUBLISH.md
+SIMPLE_PUBLISH.md
