@@ -1,4 +1,4 @@
-# Nova Language Specification v0.2.0
+# Nova Language Specification v0.3.0
 
 ## Table of Contents
 
@@ -8,13 +8,14 @@
 4. [Expressions](#expressions)
 5. [Statements](#statements)
 6. [Functions](#functions)
-7. [Control Flow](#control-flow)
-8. [Built-in Functions](#built-in-functions)
-9. [Grammar](#grammar)
+7. [Classes](#classes)
+8. [Control Flow](#control-flow)
+9. [Built-in Functions](#built-in-functions)
+10. [Grammar](#grammar)
 
 ## Introduction
 
-Nova is a dynamically-typed, interpreted programming language designed for simplicity and expressiveness. It features first-class functions, arrays, objects, and a clean syntax inspired by modern programming languages.
+Nova is a dynamically-typed, interpreted programming language designed for simplicity and expressiveness. It features first-class functions, arrays, objects, object-oriented programming with classes and inheritance, and a clean syntax inspired by modern programming languages.
 
 ## Lexical Structure
 
@@ -26,6 +27,7 @@ Nova is a dynamically-typed, interpreted programming language designed for simpl
 ### Keywords
 ```
 let fn if else while for in return true false null and or
+class extends super this constructor private public static new
 ```
 
 ### Identifiers
@@ -214,6 +216,126 @@ let add = fn(a, b) { a + b };
 
 ### Closures
 Functions capture their lexical environment.
+
+## Classes
+
+Nova supports object-oriented programming with classes.
+
+### Class Declaration
+```nova
+class ClassName {
+    constructor(params) {
+        // Initialization
+    }
+    
+    fn methodName(params) {
+        // Method body
+    }
+    
+    static fn staticMethod() {
+        // Static method body
+    }
+}
+```
+
+### Constructor
+The `constructor` method is called when creating new instances:
+```nova
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+```
+
+### Instance Creation
+Use the `new` keyword to create instances:
+```nova
+let person = new Person("Alice", 25);
+```
+
+### Method Definition
+Instance methods can access `this`:
+```nova
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+    
+    fn greet() {
+        return "Hello, I'm " + this.name;
+    }
+}
+```
+
+### Static Methods
+Static methods belong to the class, not instances:
+```nova
+class MathUtils {
+    static fn add(a, b) {
+        return a + b;
+    }
+}
+
+let sum = MathUtils.add(5, 3);
+```
+
+### Inheritance
+Classes can inherit from other classes using `extends`:
+```nova
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    
+    fn speak() {
+        return this.name + " makes a sound";
+    }
+}
+
+class Dog extends Animal {
+    constructor(name, breed) {
+        super(name);  // Call parent constructor
+        this.breed = breed;
+    }
+    
+    fn speak() {  // Override parent method
+        return this.name + " barks";
+    }
+}
+```
+
+### Visibility Modifiers
+- `public` - Accessible from outside the class (default)
+- `private` - Only accessible within the class
+
+```nova
+class BankAccount {
+    constructor(balance) {
+        this.balance = balance;
+    }
+    
+    public fn getBalance() {
+        return this.balance;
+    }
+    
+    private fn validateAmount(amount) {
+        return amount > 0;
+    }
+}
+```
+
+### Super Keyword
+Use `super` to access parent class methods:
+```nova
+class Child extends Parent {
+    fn method() {
+        let result = super.method();  // Call parent method
+        return result + " enhanced";
+    }
+}
+```
 
 ## Control Flow
 

@@ -1,7 +1,7 @@
 # Nova Programming Language
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Nova-v0.2.0-ff6b6b" alt="Nova Version">
+  <img src="https://img.shields.io/badge/Nova-v0.3.0-ff6b6b" alt="Nova Version">
   <img src="https://img.shields.io/badge/Rust-1.70+-orange" alt="Rust Version">
   <img src="https://img.shields.io/badge/License-MIT-blue" alt="License">
   <img src="https://img.shields.io/badge/Platform-Cross--Platform-green" alt="Platform">
@@ -43,11 +43,12 @@ cargo build --release
 - **🎯 Simple Syntax**: Clean, intuitive syntax inspired by modern languages
 - **⚡ Dynamic Typing**: Write code faster without type annotations
 - **📦 Rich Data Structures**: Built-in arrays, objects, and powerful collections
+- **🏛️ Object-Oriented Programming**: Classes, inheritance, encapsulation, and polymorphism
 - **🔧 First-class Functions**: Functions as values, closures, and higher-order programming
 - **🔄 Modern Control Flow**: Intuitive conditionals and loop constructs
 - **🛠️ Comprehensive Standard Library**: Math, string, and array utilities included
 - **🎮 Interactive REPL**: Immediate feedback and experimentation
-- **📝 VS Code Support**: Syntax highlighting and language support
+- **📝 VS Code Support**: Full language server with auto-completion and error detection
 
 ## 📖 Language Overview
 
@@ -102,6 +103,59 @@ while (counter < 5) {
 }
 ```
 
+### Object-Oriented Programming
+
+```nova
+// Class definition with constructor
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    fn greet() {
+        return "Hello, I'm " + this.name + ", age " + str(this.age);
+    }
+    
+    fn birthday() {
+        this.age = this.age + 1;
+        return "Happy birthday! Now " + str(this.age) + " years old.";
+    }
+    
+    static fn getSpecies() {
+        return "Homo sapiens";
+    }
+}
+
+// Inheritance
+class Student extends Person {
+    constructor(name, age, school) {
+        super(name, age);  // Call parent constructor
+        this.school = school;
+    }
+    
+    fn study() {
+        return this.name + " is studying at " + this.school;
+    }
+    
+    // Override parent method
+    fn greet() {
+        return "Hi! I'm " + this.name + ", a student at " + this.school;
+    }
+}
+
+// Usage
+let person = new Person("Alice", 25);
+print(person.greet()); // Hello, I'm Alice, age 25
+
+let student = new Student("Bob", 20, "Nova University");
+print(student.greet()); // Hi! I'm Bob, a student at Nova University
+print(student.study()); // Bob is studying at Nova University
+
+// Static method call
+print(Person.getSpecies()); // Homo sapiens
+```
+
 ### Higher-Order Functions
 
 ```nova
@@ -129,6 +183,7 @@ Explore these example programs to learn Nova:
 | [`arrays.nova`](examples/arrays.nova) | Array operations and manipulation |
 | [`loops.nova`](examples/loops.nova) | Control flow and iteration |
 | [`fibonacci.nova`](examples/fibonacci.nova) | Recursive Fibonacci sequence |
+| [`classes.nova`](examples/classes.nova) | Object-oriented programming examples |
 | [`advanced.nova`](examples/advanced.nova) | Complex programming patterns |
 
 ```bash
@@ -315,25 +370,27 @@ See our [Contributing Guide](docs/CONTRIBUTING.md) for detailed information.
 
 ## 📋 Roadmap
 
-### Current Version (v0.2.0)
+### Current Version (v0.3.0)
 - ✅ Core language implementation
 - ✅ Standard data types and operations
 - ✅ Functions and closures
 - ✅ Control flow constructs
 - ✅ Built-in functions
+- ✅ **Object-Oriented Programming** (Classes, Inheritance, Encapsulation)
+- ✅ **VS Code Language Server** (Auto-completion, Hover, Error Detection)
 - ✅ REPL and file execution
 - ✅ Comprehensive testing
 
-### Next Release (v0.3.0)
-- 🔄 Object/Map data structures (partially implemented)
+### Next Release (v0.4.0)
+- 🔄 Enhanced class features (interfaces, abstract classes)
+- 🔄 Object/Map data structures improvements
 - 🔄 String interpolation
 - 🔄 Module system and imports
 - 🔄 Enhanced error messages
 - 🔄 Performance optimizations
-- 🔄 Improved string-number concatenation
 
 ### Future Versions
-- 📋 Error handling (try/catch)
+- 📋 Error handling (try/catch) - partially implemented
 - 📋 Regular expressions
 - 📋 File I/O operations
 - 📋 HTTP client library
