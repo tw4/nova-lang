@@ -17,7 +17,7 @@ Thank you for your interest in contributing to the Nova programming language! Th
 1. Fork the repository on GitHub
 2. Clone your fork locally:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/nova-lang.git
+   git clone https://github.com/tw4/nova-lang.git
    cd nova-lang
    ```
 3. Set up the development environment (see below)

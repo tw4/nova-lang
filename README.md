@@ -25,7 +25,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/nova-lang.git
+git clone https://github.com/tw4/nova-lang.git
 cd nova-lang
 
 # Build Nova (requires Rust)
@@ -174,7 +174,7 @@ nova-lang/
 
 ```bash
 # Clone and build
-git clone https://github.com/your-username/nova-lang.git
+git clone https://github.com/tw4/nova-lang.git
 cd nova-lang
 cargo build --release
 
@@ -382,10 +382,10 @@ copies or substantial portions of the Software.
 ## 🔗 Links
 
 - **[Website](docs/website/index.html)** - Official Nova website
-- **[GitHub Repository](https://github.com/your-username/nova-lang)** - Source code
+- **[GitHub Repository](https://github.com/tw4/nova-lang)** - Source code
 - **[Documentation](docs/)** - Complete documentation
 - **[Examples](examples/)** - Code examples
-- **[Issues](https://github.com/your-username/nova-lang/issues)** - Bug reports and feature requests
+- **[Issues](https://github.com/tw4/nova-lang/issues)** - Bug reports and feature requests
 
 ---
 
