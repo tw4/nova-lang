@@ -1,11 +1,11 @@
-# Count .nova files as Text (avoids misclassification as Rust)
-*.nova linguist-language=Text
+# Nova dilini Text yerine Nova olarak tanımla
+*.nova linguist-language=Nova
 
-# Suppress Rust files from language statistics
+# Rust dosyalarını istatistikten çıkar
 *.rs              linguist-detectable=false
 src/**/*.rs       linguist-detectable=false
 
-# Common exclusions to keep stats clean
+# Gereksiz dosyaları istatistikten çıkar
 tests/**/*        linguist-detectable=false
 testdata/**/*     linguist-detectable=false
 fixtures/**/*     linguist-detectable=false
