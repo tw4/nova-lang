@@ -1,0 +1,25 @@
+{
+    "iconDefinitions": {
+        "nova-file": {
+            "iconPath": "./icon.png"
+        }
+    },
+    "fileExtensions": {
+        "nova": "nova-file"
+    },
+    "fileNames": {},
+    "folderNames": {},
+    "folderNamesExpanded": {},
+    "languageIds": {
+        "nova": "nova-file"
+    },
+    "light": {
+        "fileExtensions": {
+            "nova": "nova-file"
+        },
+        "languageIds": {
+            "nova": "nova-file"
+        }
+    },
+    "hidesExplorerArrows": false
+}

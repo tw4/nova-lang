@@ -1,0 +1,75 @@
+// Nova Web Application Example
+// A simple web server demonstration
+
+import http from "http";
+import fs from "fs";
+
+class WebServer {
+    constructor(port) {
+        this.port = port;
+        this.routes = {};
+    }
+    
+    get(path, handler) {
+        this.routes[path] = handler;
+    }
+    
+    start() {
+        println(f"Starting server on port {this.port}...");
+        
+        // Simple HTTP server simulation
+        this.handleRequests();
+    }
+    
+    handleRequests() {
+        println("Server listening for requests...");
+        println("Available routes:");
+        
+        for (route in this.routes) {
+            println(f"  GET {route}");
+        }
+        
+        // Simulate handling a request
+        this.simulateRequest("/");
+        this.simulateRequest("/api/users");
+        this.simulateRequest("/about");
+    }
+    
+    simulateRequest(path) {
+        if (this.routes[path]) {
+            println(f"Request: GET {path}");
+            let response = this.routes[path]();
+            println(f"Response: {response}");
+        } else {
+            println(f"404 Not Found: {path}");
+        }
+        println("---");
+    }
+}
+
+fn homeHandler() {
+    return "Welcome to Nova Web App!";
+}
+
+fn usersHandler() {
+    let users = ["Alice", "Bob", "Charlie"];
+    return f"Users: {join(users, ', ')}";
+}
+
+fn aboutHandler() {
+    return "This is a Nova web application example.";
+}
+
+fn main() {
+    let server = new WebServer(3000);
+    
+    // Define routes
+    server.get("/", homeHandler);
+    server.get("/api/users", usersHandler);
+    server.get("/about", aboutHandler);
+    
+    // Start the server
+    server.start();
+}
+
+main();

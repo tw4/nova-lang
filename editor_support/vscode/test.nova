@@ -1,9 +1,137 @@
-  // Test Nova file
-  let greeting = "Hello Nova!";
-  fn test() {
-      if (true) {
-          print(greeting);
-      }
-  }
+// Nova Language Test File
+// Test all major language features
 
-  test();
+// Variables and constants
+let message = "Hello Nova!";
+const PI = 3.14159;
+let numbers = [1, 2, 3, 4, 5];
+
+
+// Built-in functions
+print("Testing Nova language features...");
+print("Message: " + message);
+print("PI: " + str(PI));
+print("Numbers length: " + len(numbers));
+print("Type of message: " + type(message));
+
+// Math operations
+let result = abs(-42);
+let maximum = max(10, 20);
+let square_root = sqrt(16);
+let power = pow(2, 3);
+
+print("abs(-42) = " + str(result));
+print("max(10, 20) = " + str(maximum));
+print("sqrt(16) = " + str(square_root));
+print("pow(2, 3) = " + str(power));
+
+// Functions
+fn calculate(a, b) {
+    return a * b + 10;
+}
+
+fn greet(name) {
+    return "Hello, " + name + "!";
+}
+
+print(greet("Nova Developer"));
+print("calculate(5, 3) = " + str(calculate(5, 3)));
+
+// Classes and inheritance
+class Animal {
+    constructor(name, species) {
+        this.name = name;
+        this.species = species;
+    }
+    
+    fn speak() {
+        return this.name + " makes a sound";
+    }
+    
+    fn getInfo() {
+        return this.name + " is a " + this.species;
+    }
+}
+
+class Dog extends Animal {
+    constructor(name, breed) {
+        super(name, "dog");
+        this.breed = breed;
+    }
+    
+    fn speak() {
+        return this.name + " barks!";
+    }
+    
+    fn fetch() {
+        return this.name + " is fetching the ball";
+    }
+}
+
+// Create instances
+let genericAnimal = new Animal("Buddy", "unknown");
+let myDog = new Dog("Rex", "Golden Retriever");
+
+print(genericAnimal.getInfo());
+print(genericAnimal.speak());
+print(myDog.getInfo());
+print(myDog.speak());
+print(myDog.fetch());
+
+// Control flow
+if (len(message) > 5) {
+    print("Message is long enough");
+} else {
+    print("Message is too short");
+}
+
+// Loops
+print("Counting with while loop:");
+let counter = 0;
+while (counter < 3) {
+    print("Count: " + str(counter));
+    counter = counter + 1;
+}
+
+print("Iterating over numbers:");
+for (num in numbers) {
+    print("Number: " + str(num) + ", Type: " + type(num));
+}
+
+// Array operations
+let fruits = ["apple", "banana"];
+let moreFruits = push(fruits, "cherry");
+print("Original fruits: " + str(fruits));
+print("More fruits: " + str(moreFruits));
+
+let lastFruit = pop(moreFruits);
+print("Popped fruit: " + str(lastFruit));
+
+// String operations
+let sentence = "Nova Programming Language";
+let words = split(sentence, " ");
+print("Sentence: " + sentence);
+print("Words: " + str(words));
+print("Joined: " + join(words, "-"));
+
+
+// Error handling
+try {
+    let division = 10 / 0; // This might cause an error
+    print("Division result: " + str(division));
+} catch (error) {
+    print("Caught an error: " + str(error));
+} finally {
+    print("Cleanup completed");
+}
+let username = "NovaUser";
+
+
+// String interpolation (if supported)
+let name = "Nova";
+let version = 1.0;
+
+// Uncomment if string interpolation is implemented:
+// let interpolated = f"Welcome to ${name} version ${version}!";
+// print(interpolated);
+print("=== Nova test file completed successfully! ===");

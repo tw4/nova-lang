@@ -1,4 +1,11 @@
 #[derive(Debug, Clone, PartialEq)]
+pub struct TokenWithLocation {
+    pub token: Token,
+    pub line: usize,
+    pub column: usize,
+}
+
+#[derive(Debug, Clone, PartialEq)]
 pub enum Token {
     // Literals
     Identifier(String),

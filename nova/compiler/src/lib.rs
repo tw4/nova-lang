@@ -5,6 +5,8 @@ pub mod parser;
 pub mod value;
 pub mod interpreter;
 pub mod repl;
+pub mod diagnostics;
+pub mod module;
 
 #[cfg(test)]
 mod tests;
@@ -16,3 +18,5 @@ pub use parser::*;
 pub use value::*;
 pub use interpreter::*;
 pub use repl::*;
+pub use diagnostics::*;
+pub use module::*;

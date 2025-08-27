@@ -1,19 +1,41 @@
+# Development files
 .vscode/**
 .vscode-test/**
-out/test/**
-src/**
 .gitignore
-.yarnrc
 vsc-extension-quickstart.md
-**/tsconfig.json
-**/tslint.json
-**/*.map
-**/*.ts
-server/node_modules/**
-server/src/**
-server/tsconfig.json
-server/package-lock.json
+
+# Test and debug files
+test-*.nova
+test-*.js
+*-test.js
+TEST_INSTRUCTIONS.md
+debug-extension.js
+extension-debug.js
+simple-extension.js
+extension-enhanced.js
+
+# Node modules and build artifacts
+node_modules/**
+server-rust/target/**
+server-rust/node_modules/**
 *.vsix
-TROUBLESHOOTING.md
-PUBLISH.md
-SIMPLE_PUBLISH.md
+
+# Source maps
+*.map
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.DS_Store
+*.swp
+*.swo
+*~
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini

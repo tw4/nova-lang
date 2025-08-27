@@ -1,9 +1,11 @@
 use crate::ast::*;
 use crate::token::Token;
+use crate::diagnostics::*;
 
 pub struct Parser {
     tokens: Vec<Token>,
     current: usize,
+    diagnostics: DiagnosticsEngine,
 }
 
 #[derive(Debug)]
@@ -29,7 +31,19 @@ type ParseResult<T> = Result<T, ParseError>;
 
 impl Parser {
     pub fn new(tokens: Vec<Token>) -> Self {
-        Parser { tokens, current: 0 }
+        Parser { 
+            tokens, 
+            current: 0, 
+            diagnostics: DiagnosticsEngine::new() 
+        }
+    }
+
+    pub fn get_diagnostics(&self) -> &DiagnosticsEngine {
+        &self.diagnostics
+    }
+
+    pub fn get_diagnostics_mut(&mut self) -> &mut DiagnosticsEngine {
+        &mut self.diagnostics
     }
 
     fn current_token(&self) -> &Token {
@@ -177,7 +191,11 @@ impl Parser {
         }
         
         self.match_token(&Token::Semicolon);
-        Ok(Stmt::Import { module, alias })
+        Ok(Stmt::Import { 
+            module, 
+            imports: crate::ast::ImportSpec::All, // TODO: Parse actual import specification
+            alias 
+        })
     }
 
     fn expression(&mut self) -> ParseResult<Expr> {

@@ -1,10 +1,10 @@
 {
-    "name": "nova-language",
-    "displayName": "Nova Language Extension by tw4",
-    "description": "Complete Nova language support with classes, inheritance, auto-completion, hover docs, and error checking (.nova files)",
-    "version": "0.3.0",
+    "name": "nova-language-extension",
+    "displayName": "Nova Language Extension",
+    "description": "Enhanced Nova programming language support with syntax highlighting, auto-completion, formatting, and more",
+    "version": "1.1.0",
     "publisher": "tw4",
-    "author": "tw4",
+    "author": "Nova Development Team",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -16,16 +16,23 @@
     },
     "keywords": [
         "nova",
-        "programming",
-        "language",
-        "syntax",
-        "highlighting"
+        "programming-language",
+        "syntax-highlighting",
+        "auto-completion",
+        "rust"
     ],
     "engines": {
         "vscode": "^1.74.0"
     },
     "categories": [
-        "Programming Languages"
+        "Programming Languages",
+        "Snippets"
+    ],
+    "icon": "icons/icon.png",
+    "main": "./extension.js",
+    "activationEvents": [
+        "onLanguage:nova",
+        "workspaceContains:**/*.nova"
     ],
     "contributes": {
         "languages": [
@@ -38,7 +45,11 @@
                 "extensions": [
                     ".nova"
                 ],
-                "configuration": "./language-configuration.json"
+                "configuration": "./language-configuration.json",
+                "icon": {
+                    "light": "./icons/icon.png",
+                    "dark": "./icons/icon.png"
+                }
             }
         ],
         "grammars": [
@@ -47,20 +58,134 @@
                 "scopeName": "source.nova",
                 "path": "./syntaxes/nova.tmLanguage.json"
             }
-        ]
+        ],
+        "snippets": [
+            {
+                "language": "nova",
+                "path": "./snippets/nova.json"
+            }
+        ],
+        "themes": [
+            {
+                "label": "Nova Dark",
+                "uiTheme": "vs-dark",
+                "path": "./themes/nova-dark.json"
+            },
+            {
+                "label": "Nova Light",
+                "uiTheme": "vs",
+                "path": "./themes/nova-light.json"
+            }
+        ],
+        "iconThemes": [
+            {
+                "id": "nova-icons",
+                "label": "Nova File Icons",
+                "path": "./icons/nova-icon-theme.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "nova.restartLanguageServer",
+                "title": "Restart Language Server",
+                "category": "Nova"
+            },
+            {
+                "command": "nova.showLanguageServerOutput",
+                "title": "Show Language Server Output",
+                "category": "Nova"
+            },
+            {
+                "command": "nova.buildLanguageServer",
+                "title": "Build Language Server",
+                "category": "Nova"
+            },
+            {
+                "command": "nova.runFile",
+                "title": "Run Nova File",
+                "category": "Nova"
+            },
+            {
+                "command": "nova.goToSymbol",
+                "title": "Go to Symbol in Workspace",
+                "category": "Nova"
+            },
+            {
+                "command": "nova.goToSymbolInFile",
+                "title": "Go to Symbol in File",
+                "category": "Nova"
+            },
+            {
+                "command": "nova.showOutline",
+                "title": "Show Outline",
+                "category": "Nova"
+            },
+            {
+                "command": "nova.createProject",
+                "title": "Create Nova Project",
+                "category": "Nova"
+            },
+            {
+                "command": "nova.generateFile",
+                "title": "Generate Code Template",
+                "category": "Nova"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "resourceExtname == .nova",
+                    "command": "nova.runFile",
+                    "group": "navigation"
+                }
+            ],
+            "commandPalette": [
+                {
+                    "command": "nova.restartLanguageServer",
+                    "when": "editorLangId == nova"
+                },
+                {
+                    "command": "nova.showLanguageServerOutput",
+                    "when": "editorLangId == nova"
+                },
+                {
+                    "command": "nova.buildLanguageServer",
+                    "when": "editorLangId == nova"
+                },
+                {
+                    "command": "nova.goToSymbol",
+                    "when": "editorLangId == nova"
+                },
+                {
+                    "command": "nova.goToSymbolInFile",
+                    "when": "editorLangId == nova"
+                },
+                {
+                    "command": "nova.showOutline",
+                    "when": "editorLangId == nova"
+                },
+                {
+                    "command": "nova.createProject",
+                    "when": "workspaceFolderCount > 0"
+                },
+                {
+                    "command": "nova.generateFile",
+                    "when": "editorLangId == nova"
+                }
+            ]
+        }
     },
-    "main": "./extension.js",
-    "activationEvents": [
-        "onLanguage:nova"
-    ],
     "scripts": {
-        "compile": "cd server && npm install && npm run compile",
-        "postinstall": "cd server && npm install"
+        "package": "vsce package",
+        "install-local": "code --install-extension nova-language-support-1.0.0.vsix",
+        "build-server": "cd server-rust && cargo build --release",
+        "build-server-debug": "cd server-rust && cargo build"
     },
     "dependencies": {
         "vscode-languageclient": "^8.1.0"
     },
     "devDependencies": {
-        "@types/vscode": "^1.74.0"
+        "@types/vscode": "^1.74.0",
+        "vsce": "^2.15.0"
     }
 }

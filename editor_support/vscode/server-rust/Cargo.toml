@@ -1,0 +1,28 @@
+[package]
+name = "nova-language-server"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+
+[[bin]]
+name = "nova-language-server"
+path = "src/main.rs"
+
+[dependencies]
+# LSP dependencies
+tower-lsp = "0.20"
+tokio = { version = "1.0", features = ["full"] }
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+
+# Nova compiler dependencies
+nova-compiler = { path = "../../../nova/compiler" }
+
+# Additional dependencies
+dashmap = "5.0"
+ropey = "1.6"
+regex = "1.10"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"

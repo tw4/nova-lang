@@ -1,0 +1,321 @@
+{
+    "Class Definition": {
+        "prefix": ["class", "cls"],
+        "body": [
+            "class ${1:ClassName} {",
+            "\tconstructor(${2:params}) {",
+            "\t\t${3:// initialization}",
+            "\t}",
+            "",
+            "\t${4:// methods}",
+            "}"
+        ],
+        "description": "Create a new class with constructor"
+    },
+    "Class with Inheritance": {
+        "prefix": ["class-extends", "extends"],
+        "body": [
+            "class ${1:ChildClass} extends ${2:ParentClass} {",
+            "\tconstructor(${3:params}) {",
+            "\t\tsuper(${4:superParams});",
+            "\t\t${5:// initialization}",
+            "\t}",
+            "",
+            "\t${6:// methods}",
+            "}"
+        ],
+        "description": "Create a class that extends another class"
+    },
+    "Function Definition": {
+        "prefix": ["fn", "function"],
+        "body": [
+            "fn ${1:functionName}(${2:params}) {",
+            "\t${3:// function body}",
+            "\treturn ${4:result};",
+            "}"
+        ],
+        "description": "Create a function"
+    },
+    "If Statement": {
+        "prefix": ["if"],
+        "body": [
+            "if (${1:condition}) {",
+            "\t${2:// if body}",
+            "}"
+        ],
+        "description": "If statement"
+    },
+    "If-Else Statement": {
+        "prefix": ["if-else", "ifelse"],
+        "body": [
+            "if (${1:condition}) {",
+            "\t${2:// if body}",
+            "} else {",
+            "\t${3:// else body}",
+            "}"
+        ],
+        "description": "If-else statement"
+    },
+    "While Loop": {
+        "prefix": ["while"],
+        "body": [
+            "while (${1:condition}) {",
+            "\t${2:// loop body}",
+            "}"
+        ],
+        "description": "While loop"
+    },
+    "For-In Loop": {
+        "prefix": ["for", "forin"],
+        "body": [
+            "for (${1:item} in ${2:collection}) {",
+            "\t${3:// loop body}",
+            "}"
+        ],
+        "description": "For-in loop"
+    },
+    "Try-Catch Block": {
+        "prefix": ["try", "try-catch"],
+        "body": [
+            "try {",
+            "\t${1:// try body}",
+            "} catch (${2:error}) {",
+            "\t${3:// error handling}",
+            "}"
+        ],
+        "description": "Try-catch block"
+    },
+    "Try-Catch-Finally Block": {
+        "prefix": ["try-finally", "try-catch-finally"],
+        "body": [
+            "try {",
+            "\t${1:// try body}",
+            "} catch (${2:error}) {",
+            "\t${3:// error handling}",
+            "} finally {",
+            "\t${4:// cleanup}",
+            "}"
+        ],
+        "description": "Try-catch-finally block"
+    },
+    "Constructor": {
+        "prefix": ["constructor", "ctor"],
+        "body": [
+            "constructor(${1:params}) {",
+            "\t${2:// initialization}",
+            "}"
+        ],
+        "description": "Class constructor"
+    },
+    "Method": {
+        "prefix": ["method"],
+        "body": [
+            "${1:methodName}(${2:params}) {",
+            "\t${3:// method body}",
+            "\treturn ${4:result};",
+            "}"
+        ],
+        "description": "Class method"
+    },
+    "Print Statement": {
+        "prefix": ["print", "log"],
+        "body": [
+            "print(${1:\"Hello World!\"});"
+        ],
+        "description": "Print to console"
+    },
+    "Variable Declaration": {
+        "prefix": ["let", "var"],
+        "body": [
+            "let ${1:variableName} = ${2:value};"
+        ],
+        "description": "Declare a variable"
+    },
+    "Constant Declaration": {
+        "prefix": ["const"],
+        "body": [
+            "const ${1:CONSTANT_NAME} = ${2:value};"
+        ],
+        "description": "Declare a constant"
+    },
+    "Array": {
+        "prefix": ["array", "arr"],
+        "body": [
+            "[${1:item1}, ${2:item2}, ${3:item3}]"
+        ],
+        "description": "Create an array"
+    },
+    "Object": {
+        "prefix": ["object", "obj"],
+        "body": [
+            "{",
+            "\t${1:key}: ${2:value},",
+            "\t${3:key2}: ${4:value2}",
+            "}"
+        ],
+        "description": "Create an object"
+    },
+    "Import Statement": {
+        "prefix": ["import"],
+        "body": [
+            "import ${1:module} from \"${2:path}\";"
+        ],
+        "description": "Import module"
+    },
+    "Export Statement": {
+        "prefix": ["export"],
+        "body": [
+            "export ${1:item};"
+        ],
+        "description": "Export item"
+    },
+    "Comment Block": {
+        "prefix": ["comment", "/*"],
+        "body": [
+            "/*",
+            " * ${1:Comment}",
+            " */"
+        ],
+        "description": "Block comment"
+    },
+    "Main Function": {
+        "prefix": ["main"],
+        "body": [
+            "fn main() {",
+            "\t${1:// main function body}",
+            "}"
+        ],
+        "description": "Main function"
+    },
+    "Async Function": {
+        "prefix": ["async-fn", "asyncfn"],
+        "body": [
+            "async fn ${1:functionName}(${2:params}) {",
+            "\t${3:// async function body}",
+            "\treturn await ${4:result};",
+            "}"
+        ],
+        "description": "Async function"
+    },
+    "Match Statement": {
+        "prefix": ["match"],
+        "body": [
+            "match ${1:expression} {",
+            "\t${2:pattern1} => ${3:result1},",
+            "\t${4:pattern2} => ${5:result2},",
+            "\t_ => ${6:default_result}",
+            "}"
+        ],
+        "description": "Match expression"
+    },
+    "Switch Statement": {
+        "prefix": ["switch"],
+        "body": [
+            "switch (${1:expression}) {",
+            "\tcase ${2:value1}:",
+            "\t\t${3:// case 1 body}",
+            "\t\tbreak;",
+            "\tcase ${4:value2}:",
+            "\t\t${5:// case 2 body}",
+            "\t\tbreak;",
+            "\tdefault:",
+            "\t\t${6:// default body}",
+            "}"
+        ],
+        "description": "Switch statement"
+    },
+    "Enum Definition": {
+        "prefix": ["enum"],
+        "body": [
+            "enum ${1:EnumName} {",
+            "\t${2:Variant1},",
+            "\t${3:Variant2}(${4:type}),",
+            "\t${5:Variant3} { ${6:field}: ${7:type} }",
+            "}"
+        ],
+        "description": "Enum definition"
+    },
+    "Interface Definition": {
+        "prefix": ["interface"],
+        "body": [
+            "interface ${1:InterfaceName} {",
+            "\t${2:methodName}(${3:params}): ${4:returnType};",
+            "\t${5:property}: ${6:type};",
+            "}"
+        ],
+        "description": "Interface definition"
+    },
+    "Trait Definition": {
+        "prefix": ["trait"],
+        "body": [
+            "trait ${1:TraitName} {",
+            "\tfn ${2:methodName}(${3:params}) {",
+            "\t\t${4:// default implementation}",
+            "\t}",
+            "",
+            "\tfn ${5:requiredMethod}(${6:params});",
+            "}"
+        ],
+        "description": "Trait definition"
+    },
+    "Generic Function": {
+        "prefix": ["generic-fn"],
+        "body": [
+            "fn ${1:functionName}<T>(${2:param}: T) -> T {",
+            "\t${3:// generic function body}",
+            "\treturn ${4:param};",
+            "}"
+        ],
+        "description": "Generic function"
+    },
+    "Lambda Expression": {
+        "prefix": ["lambda", "=>"],
+        "body": [
+            "(${1:params}) => ${2:expression}"
+        ],
+        "description": "Lambda expression"
+    },
+    "Error Handling": {
+        "prefix": ["result", "error-handling"],
+        "body": [
+            "match ${1:operation}() {",
+            "\tOk(${2:value}) => {",
+            "\t\t${3:// success handling}",
+            "\t},",
+            "\tErr(${4:error}) => {",
+            "\t\t${5:// error handling}",
+            "\t}",
+            "}"
+        ],
+        "description": "Result-based error handling"
+    },
+    "Async/Await": {
+        "prefix": ["await"],
+        "body": [
+            "let ${1:result} = await ${2:asyncOperation}();"
+        ],
+        "description": "Await async operation"
+    },
+    "Module Definition": {
+        "prefix": ["module"],
+        "body": [
+            "module ${1:ModuleName} {",
+            "\tpublic fn ${2:publicFunction}() {",
+            "\t\t${3:// public function body}",
+            "\t}",
+            "",
+            "\tfn ${4:privateFunction}() {",
+            "\t\t${5:// private function body}",
+            "\t}",
+            "}"
+        ],
+        "description": "Module definition"
+    },
+    "String Interpolation": {
+        "prefix": ["f-string", "fstring"],
+        "body": [
+            "f\"${1:Hello ${2:name}, you are ${3:age} years old!}\""
+        ],
+        "description": "String interpolation"
+    }
+}

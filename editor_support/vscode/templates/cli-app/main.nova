@@ -1,0 +1,189 @@
+// Nova CLI Application Example
+// A command-line task manager
+
+import fs from "fs";
+
+class TaskManager {
+    constructor() {
+        this.tasks = [];
+        this.idCounter = 1;
+        this.loadTasks();
+    }
+    
+    addTask(description) {
+        let task = {
+            id: this.idCounter++,
+            description: description,
+            completed: false,
+            createdAt: new Date()
+        };
+        
+        this.tasks.push(task);
+        this.saveTasks();
+        println(f"Added task: {task.description} (ID: {task.id})");
+    }
+    
+    listTasks() {
+        if (len(this.tasks) == 0) {
+            println("No tasks found.");
+            return;
+        }
+        
+        println("Your tasks:");
+        println("ID | Status | Description");
+        println("-" * 30);
+        
+        for (task in this.tasks) {
+            let status = task.completed ? "✓" : "○";
+            println(f"{task.id}  | {status}      | {task.description}");
+        }
+    }
+    
+    completeTask(id) {
+        for (task in this.tasks) {
+            if (task.id == id) {
+                task.completed = true;
+                this.saveTasks();
+                println(f"Completed task: {task.description}");
+                return;
+            }
+        }
+        println(f"Task with ID {id} not found.");
+    }
+    
+    deleteTask(id) {
+        let newTasks = [];
+        let found = false;
+        
+        for (task in this.tasks) {
+            if (task.id == id) {
+                found = true;
+                println(f"Deleted task: {task.description}");
+            } else {
+                newTasks.push(task);
+            }
+        }
+        
+        if (found) {
+            this.tasks = newTasks;
+            this.saveTasks();
+        } else {
+            println(f"Task with ID {id} not found.");
+        }
+    }
+    
+    loadTasks() {
+        // Simulate loading tasks from file
+        // In a real implementation, this would read from a JSON file
+        this.tasks = [
+            { id: 1, description: "Learn Nova programming", completed: false },
+            { id: 2, description: "Build a CLI app", completed: true }
+        ];
+        this.idCounter = 3;
+    }
+    
+    saveTasks() {
+        // Simulate saving tasks to file
+        // In a real implementation, this would write to a JSON file
+        println("Tasks saved to file.");
+    }
+    
+    showHelp() {
+        println("Nova Task Manager");
+        println("Commands:");
+        println("  add <description>    - Add a new task");
+        println("  list                 - List all tasks");
+        println("  complete <id>        - Mark task as completed");
+        println("  delete <id>          - Delete a task");
+        println("  help                 - Show this help message");
+        println("  quit                 - Exit the application");
+    }
+}
+
+fn parseCommand(input) {
+    let parts = split(trim(input), " ");
+    if (len(parts) == 0) {
+        return { command: "", args: [] };
+    }
+    
+    let command = parts[0];
+    let args = [];
+    
+    for (i in 1..(len(parts))) {
+        args.push(parts[i]);
+    }
+    
+    return { command: command, args: args };
+}
+
+fn main() {
+    let taskManager = new TaskManager();
+    
+    println("Welcome to Nova Task Manager!");
+    println("Type 'help' for available commands.");
+    
+    // Simulate user input (in a real CLI, this would be interactive)
+    let commands = [
+        "help",
+        "list",
+        "add Fix the bug in parser",
+        "add Write documentation",
+        "list",
+        "complete 1",
+        "list",
+        "delete 2",
+        "list"
+    ];
+    
+    for (inputCommand in commands) {
+        println(f"\n> {inputCommand}");
+        let parsed = parseCommand(inputCommand);
+        
+        switch (parsed.command) {
+            case "add":
+                if (len(parsed.args) > 0) {
+                    let description = join(parsed.args, " ");
+                    taskManager.addTask(description);
+                } else {
+                    println("Please provide a task description.");
+                }
+                break;
+                
+            case "list":
+                taskManager.listTasks();
+                break;
+                
+            case "complete":
+                if (len(parsed.args) > 0) {
+                    let id = num(parsed.args[0]);
+                    taskManager.completeTask(id);
+                } else {
+                    println("Please provide a task ID.");
+                }
+                break;
+                
+            case "delete":
+                if (len(parsed.args) > 0) {
+                    let id = num(parsed.args[0]);
+                    taskManager.deleteTask(id);
+                } else {
+                    println("Please provide a task ID.");
+                }
+                break;
+                
+            case "help":
+                taskManager.showHelp();
+                break;
+                
+            case "quit":
+                println("Goodbye!");
+                return;
+                
+            default:
+                println(f"Unknown command: {parsed.command}");
+                println("Type 'help' for available commands.");
+        }
+    }
+}
+
+main();

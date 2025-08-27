@@ -1,0 +1,95 @@
+// Nova Symbol Detection Test File
+
+// Variables
+let username = "Nova Developer";
+let age = 25;
+const PI = 3.14159;
+let numbers = [1, 2, 3, 4, 5];
+
+// Functions
+fn calculateArea(radius) {
+    return PI * radius * radius;
+}
+
+fn greetUser() {
+    return "Hello " + username + "!";
+}
+
+// Class with methods
+class Calculator {
+    constructor(name) {
+        this.name = name;
+        this.history = [];
+    }
+    
+    fn add(a, b) {
+        let result = a + b;
+        this.history.push(result);
+        return result;
+    }
+    
+    fn multiply(x, y) {
+        let product = x * y;
+        this.history.push(product);
+        return product;
+    }
+    
+    public fn getHistory() {
+        return this.history;
+    }
+    
+    private fn clearHistory() {
+        this.history = [];
+    }
+    
+    static fn getVersion() {
+        return "1.0.0";
+    }
+}
+
+// Class inheritance
+class ScientificCalculator extends Calculator {
+    constructor(name) {
+        super(name);
+        this.precision = 10;
+    }
+    
+    fn power(base, exponent) {
+        let result = pow(base, exponent);
+        this.history.push(result);
+        return result;
+    }
+    
+    fn squareRoot(value) {
+        let result = sqrt(value);
+        return result;
+    }
+}
+
+// Usage
+let calc = new Calculator("Basic Calc");
+let scientific = new ScientificCalculator("Advanced Calc");
+
+// Test variables in scope
+let sum = calc.add(10, 20);
+let product = calc.multiply(5, 6);
+
+// Test method calls
+let history = calc.getHistory();
+let version = Calculator.getVersion();
+
+// Test class methods
+let power = scientific.power(2, 3);
+let root = scientific.squareRoot(16);
+
+print(greetUser());
+print("Sum: " + str(sum));
+print("Product: " + str(product));
+print("Power: " + str(power));
+print("Root: " + str(root));
+
+// Test property access completion here:
+// calc. <- should show: add, multiply, getHistory, clearHistory, name, history
+// scientific. <- should show: power, squareRoot, add, multiply, getHistory, precision
+// username <- should be suggested as variable
+// calculateArea <- should be suggested as function

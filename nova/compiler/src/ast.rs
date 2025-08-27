@@ -49,6 +49,7 @@ pub enum Expr {
         value: Box<Expr>,
     },
     StringInterpolation(Vec<Expr>),
+    TemplateString(Vec<TemplateStringPart>),
     Try {
         body: Box<Expr>,
         catch: Option<(String, Box<Expr>)>,
@@ -59,6 +60,7 @@ pub enum Expr {
         params: Vec<String>,
         body: Box<Expr>,
     },
+    Await(Box<Expr>),
     This,
     Super,
 }
@@ -75,11 +77,22 @@ pub enum Stmt {
         params: Vec<String>,
         body: Expr,
     },
+    AsyncFunction {
+        name: String,
+        params: Vec<String>,
+        body: Expr,
+    },
     Return(Option<Expr>),
     Import {
         module: String,
+        imports: ImportSpec,
         alias: Option<String>,
     },
+    Export {
+        name: String,
+        value: Expr,
+    },
+    ExportDefault(Expr),
     Class {
         name: String,
         superclass: Option<String>,
@@ -196,6 +209,20 @@ pub struct ClassMethod {
 pub enum Visibility {
     Public,
     Private,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum ImportSpec {
+    All,                        // import * from module
+    Named(Vec<String>),        // import { a, b, c } from module
+    Default(String),           // import defaultName from module
+    NamedDefault(String, Vec<String>), // import defaultName, { a, b } from module
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum TemplateStringPart {
+    Text(String),
+    Expression(Expr),
 }
 
 impl std::fmt::Display for SourceLocation {

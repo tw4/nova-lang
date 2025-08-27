@@ -10,6 +10,7 @@ pub enum RuntimeError {
     InvalidOperation(String),
     ReturnValue(Value),
     UserThrown(String),
+    RuntimeError(String),
     Break,
     Continue,
 }
@@ -23,6 +24,7 @@ impl std::fmt::Display for RuntimeError {
             RuntimeError::InvalidOperation(msg) => write!(f, "Invalid operation: {}", msg),
             RuntimeError::ReturnValue(_) => write!(f, "Return statement outside function"),
             RuntimeError::UserThrown(msg) => write!(f, "Thrown error: {}", msg),
+            RuntimeError::RuntimeError(msg) => write!(f, "Runtime error: {}", msg),
             RuntimeError::Break => write!(f, "Break statement outside loop"),
             RuntimeError::Continue => write!(f, "Continue statement outside loop"),
         }
@@ -76,6 +78,15 @@ impl Interpreter {
                 self.environment.define(name.clone(), func);
                 Ok(None)
             }
+            Stmt::AsyncFunction { name, params, body } => {
+                let func = Value::AsyncFunction {
+                    params: params.clone(),
+                    body: body.clone(),
+                    closure: self.environment.clone(),
+                };
+                self.environment.define(name.clone(), func);
+                Ok(None)
+            }
             Stmt::Return(expr) => {
                 let value = match expr {
                     Some(e) => self.evaluate(e)?,
@@ -83,7 +94,8 @@ impl Interpreter {
                 };
                 Err(RuntimeError::ReturnValue(value))
             }
-            Stmt::Import { module, alias } => {
+            Stmt::Import { module, imports, alias } => {
+                // TODO: Implement proper import handling with imports specification
                 self.import_module(module, alias.as_ref())
             }
             Stmt::Class { name, superclass, methods, constructor } => {
@@ -94,6 +106,18 @@ impl Interpreter {
             }
             Stmt::Continue => {
                 Err(RuntimeError::Continue)
+            }
+            Stmt::Export { name, value } => {
+                // TODO: Implement export handling
+                let val = self.evaluate(value)?;
+                self.environment.define(name.clone(), val);
+                Ok(None)
+            }
+            Stmt::ExportDefault(expr) => {
+                // TODO: Implement default export handling
+                let val = self.evaluate(expr)?;
+                self.environment.define("default".to_string(), val);
+                Ok(None)
             }
         }
     }
@@ -321,7 +345,7 @@ impl Interpreter {
                             .map_err(|e| RuntimeError::UndefinedVariable(e))?;
                         Ok(val)
                     }
-                    Expr::Index { object, index } => {
+                    Expr::Index { object: _, index: _ } => {
                         // TODO: Implement array/object assignment by index
                         Err(RuntimeError::InvalidOperation("Index assignment not yet implemented".to_string()))
                     }
@@ -421,6 +445,12 @@ impl Interpreter {
                 self.environment
                     .get("super")
                     .ok_or_else(|| RuntimeError::InvalidOperation("'super' used outside derived class method".to_string()))
+            }
+            Expr::TemplateString(parts) => {
+                self.evaluate_template_string(parts)
+            }
+            Expr::Await(promise_expr) => {
+                self.evaluate_await(promise_expr)
             }
         }
     }
@@ -1210,7 +1240,7 @@ impl Interpreter {
 
     fn instantiate_class(&mut self, class: &Value, args: &[Value]) -> RuntimeResult<Value> {
         match class {
-            Value::Class { name, constructor, methods, .. } => {
+            Value::Class { constructor, .. } => {
                 // Create new instance
                 let mut instance = Value::Instance {
                     class: Box::new(class.clone()),
@@ -1276,6 +1306,45 @@ impl Interpreter {
                 }
             }
             _ => Err(RuntimeError::TypeError(format!("Cannot call method '{}' on {}", method_name, instance.type_name()))),
+        }
+    }
+
+    fn evaluate_template_string(&mut self, parts: &[crate::ast::TemplateStringPart]) -> RuntimeResult<Value> {
+        let mut result = String::new();
+        
+        for part in parts {
+            match part {
+                crate::ast::TemplateStringPart::Text(text) => {
+                    result.push_str(text);
+                }
+                crate::ast::TemplateStringPart::Expression(expr) => {
+                    let value = self.evaluate(expr)?;
+                    result.push_str(&format!("{}", value));
+                }
+            }
+        }
+        
+        Ok(Value::String(result))
+    }
+
+    fn evaluate_await(&mut self, promise_expr: &Expr) -> RuntimeResult<Value> {
+        let promise_value = self.evaluate(promise_expr)?;
+        
+        match promise_value {
+            Value::Promise(promise) => {
+                match &promise.state {
+                    crate::value::PromiseState::Resolved(value) => Ok(value.clone()),
+                    crate::value::PromiseState::Rejected(error) => {
+                        Err(RuntimeError::RuntimeError(error.clone()))
+                    }
+                    crate::value::PromiseState::Pending => {
+                        // In a real implementation, this would block or schedule continuation
+                        // For now, we'll return a runtime error
+                        Err(RuntimeError::RuntimeError("Cannot await pending promise in synchronous context".to_string()))
+                    }
+                }
+            }
+            _ => Err(RuntimeError::TypeError("Cannot await non-promise value".to_string())),
         }
     }
 }

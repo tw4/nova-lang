@@ -1,0 +1,23 @@
+// Test file for Nova completion
+let message = "Hello World";
+print(message);
+
+fn testFunction() {
+    let x = 10;
+    return x;
+}
+
+class TestClass {
+    constructor() {
+        this.value = 42;
+    }
+    
+    getValue() {
+        return this.value;
+    }
+}
+
+// Type here to test completion:
+// pr
+// le
+// f

@@ -1,0 +1,21 @@
+// Nova Hello World Example
+// This is a simple "Hello, World!" program in Nova
+
+fn main() {
+    print("Hello, World!");
+    
+    // Try some basic Nova features
+    let name = "Nova Developer";
+    let message = "Welcome to Nova programming!";
+    
+    println(f"Hello, {name}!");
+    println(message);
+    
+    // Arrays and loops
+    let numbers = [1, 2, 3, 4, 5];
+    for (num in numbers) {
+        println(f"Number: {num}");
+    }
+}
+
+main();

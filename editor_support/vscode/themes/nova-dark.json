@@ -1,0 +1,364 @@
+{
+    "name": "Nova Dark",
+    "type": "dark",
+    "semanticHighlighting": true,
+    "colors": {
+        // Editor
+        "editor.background": "#1e1e2e",
+        "editor.foreground": "#cdd6f4",
+        "editor.lineHighlightBackground": "#313244",
+        "editor.selectionBackground": "#414458",
+        "editor.selectionHighlightBackground": "#313244",
+        "editor.wordHighlightBackground": "#45475a",
+        "editor.wordHighlightStrongBackground": "#45475a",
+        "editor.findMatchBackground": "#f9e2af33",
+        "editor.findMatchHighlightBackground": "#f9e2af20",
+        "editor.hoverHighlightBackground": "#414458",
+        "editorCursor.foreground": "#f5e0dc",
+        "editorLineNumber.foreground": "#6c7086",
+        "editorLineNumber.activeForeground": "#cdd6f4",
+        "editorIndentGuide.background": "#45475a",
+        "editorIndentGuide.activeBackground": "#6c7086",
+        "editorWhitespace.foreground": "#45475a",
+
+        // Activity Bar & Side Bar
+        "activityBar.background": "#181825",
+        "activityBar.foreground": "#cdd6f4",
+        "activityBar.inactiveForeground": "#6c7086",
+        "activityBarBadge.background": "#cba6f7",
+        "activityBarBadge.foreground": "#1e1e2e",
+        "sideBar.background": "#181825",
+        "sideBar.foreground": "#cdd6f4",
+        "sideBarTitle.foreground": "#cdd6f4",
+        "sideBarSectionHeader.background": "#313244",
+        "sideBarSectionHeader.foreground": "#cdd6f4",
+
+        // Status Bar
+        "statusBar.background": "#181825",
+        "statusBar.foreground": "#cdd6f4",
+        "statusBar.debuggingBackground": "#f38ba8",
+        "statusBar.debuggingForeground": "#1e1e2e",
+        "statusBarItem.hoverBackground": "#313244",
+
+        // Tab Bar
+        "tab.activeBackground": "#1e1e2e",
+        "tab.activeForeground": "#cdd6f4",
+        "tab.inactiveBackground": "#181825",
+        "tab.inactiveForeground": "#6c7086",
+        "tab.border": "#313244",
+        "editorGroupHeader.tabsBackground": "#181825",
+
+        // Terminal
+        "terminal.background": "#1e1e2e",
+        "terminal.foreground": "#cdd6f4",
+        "terminal.ansiBlack": "#45475a",
+        "terminal.ansiRed": "#f38ba8",
+        "terminal.ansiGreen": "#a6e3a1",
+        "terminal.ansiYellow": "#f9e2af",
+        "terminal.ansiBlue": "#89b4fa",
+        "terminal.ansiMagenta": "#cba6f7",
+        "terminal.ansiCyan": "#94e2d5",
+        "terminal.ansiWhite": "#bac2de",
+        "terminal.ansiBrightBlack": "#585b70",
+        "terminal.ansiBrightRed": "#f38ba8",
+        "terminal.ansiBrightGreen": "#a6e3a1",
+        "terminal.ansiBrightYellow": "#f9e2af",
+        "terminal.ansiBrightBlue": "#89b4fa",
+        "terminal.ansiBrightMagenta": "#cba6f7",
+        "terminal.ansiBrightCyan": "#94e2d5",
+        "terminal.ansiBrightWhite": "#a6adc8",
+
+        // Panel
+        "panel.background": "#181825",
+        "panel.border": "#313244",
+        "panelTitle.activeForeground": "#cdd6f4",
+        "panelTitle.inactiveForeground": "#6c7086",
+
+        // Scrollbar
+        "scrollbarSlider.background": "#45475a66",
+        "scrollbarSlider.hoverBackground": "#45475a99",
+        "scrollbarSlider.activeBackground": "#45475abb",
+
+        // Dropdown
+        "dropdown.background": "#313244",
+        "dropdown.foreground": "#cdd6f4",
+        "dropdown.border": "#6c7086",
+
+        // Input
+        "input.background": "#313244",
+        "input.foreground": "#cdd6f4",
+        "input.border": "#6c7086",
+        "input.placeholderForeground": "#6c7086",
+
+        // List
+        "list.activeSelectionBackground": "#414458",
+        "list.activeSelectionForeground": "#cdd6f4",
+        "list.inactiveSelectionBackground": "#313244",
+        "list.inactiveSelectionForeground": "#cdd6f4",
+        "list.hoverBackground": "#313244",
+        "list.hoverForeground": "#cdd6f4",
+
+        // Notifications
+        "notificationCenter.border": "#6c7086",
+        "notificationCenterHeader.background": "#313244",
+        "notificationToast.border": "#6c7086",
+        "notifications.background": "#313244",
+        "notifications.foreground": "#cdd6f4",
+        "notifications.border": "#6c7086",
+
+        // Peek View
+        "peekView.border": "#cba6f7",
+        "peekViewEditor.background": "#1e1e2e",
+        "peekViewResult.background": "#181825",
+        "peekViewTitle.background": "#313244"
+    },
+    "tokenColors": [
+        {
+            "name": "Comment",
+            "scope": [
+                "comment",
+                "punctuation.definition.comment"
+            ],
+            "settings": {
+                "foreground": "#6c7086",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "name": "Nova Control Keywords",
+            "scope": [
+                "keyword.control.conditional.nova",
+                "keyword.control.repeat.nova",
+                "keyword.control.flow.nova",
+                "keyword.control.exception.nova"
+            ],
+            "settings": {
+                "foreground": "#cba6f7",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Nova Import Keywords",
+            "scope": [
+                "keyword.control.import.nova"
+            ],
+            "settings": {
+                "foreground": "#f2cdcd",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "name": "Nova Type Keywords",
+            "scope": [
+                "storage.type.nova",
+                "storage.modifier.nova"
+            ],
+            "settings": {
+                "foreground": "#89b4fa",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Nova Inheritance Keywords",
+            "scope": [
+                "keyword.control.inheritance.nova"
+            ],
+            "settings": {
+                "foreground": "#f9e2af",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Nova Language Variables",
+            "scope": [
+                "variable.language.nova"
+            ],
+            "settings": {
+                "foreground": "#f38ba8",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "name": "Nova Other Keywords",
+            "scope": [
+                "keyword.other.nova",
+                "keyword.operator.logical.nova"
+            ],
+            "settings": {
+                "foreground": "#94e2d5"
+            }
+        },
+        {
+            "name": "Nova Strings",
+            "scope": [
+                "string.quoted.double.nova",
+                "string.quoted.single.nova",
+                "string.interpolated.nova"
+            ],
+            "settings": {
+                "foreground": "#a6e3a1"
+            }
+        },
+        {
+            "name": "Nova Numbers",
+            "scope": [
+                "constant.numeric.integer.nova",
+                "constant.numeric.float.nova",
+                "constant.numeric.hex.nova",
+                "constant.numeric.binary.nova",
+                "constant.numeric.octal.nova"
+            ],
+            "settings": {
+                "foreground": "#fab387"
+            }
+        },
+        {
+            "name": "Nova Function Definitions",
+            "scope": [
+                "entity.name.function.nova",
+                "entity.name.function.method.nova"
+            ],
+            "settings": {
+                "foreground": "#89b4fa",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Nova Function Calls",
+            "scope": [
+                "entity.name.function.call.nova"
+            ],
+            "settings": {
+                "foreground": "#74c7ec"
+            }
+        },
+        {
+            "name": "Nova Console Functions",
+            "scope": [
+                "support.function.builtin.console.nova"
+            ],
+            "settings": {
+                "foreground": "#f9e2af",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Nova Type Functions",
+            "scope": [
+                "support.function.builtin.type.nova"
+            ],
+            "settings": {
+                "foreground": "#89b4fa"
+            }
+        },
+        {
+            "name": "Nova Collection Functions",
+            "scope": [
+                "support.function.builtin.collection.nova"
+            ],
+            "settings": {
+                "foreground": "#a6e3a1"
+            }
+        },
+        {
+            "name": "Nova Math Functions",
+            "scope": [
+                "support.function.builtin.math.nova"
+            ],
+            "settings": {
+                "foreground": "#fab387"
+            }
+        },
+        {
+            "name": "Nova String Functions",
+            "scope": [
+                "support.function.builtin.string.nova"
+            ],
+            "settings": {
+                "foreground": "#94e2d5"
+            }
+        },
+        {
+            "name": "Nova I/O Functions",
+            "scope": [
+                "support.function.builtin.io.nova"
+            ],
+            "settings": {
+                "foreground": "#eba0ac"
+            }
+        },
+        {
+            "name": "Nova Constructor",
+            "scope": [
+                "entity.name.function.constructor.nova"
+            ],
+            "settings": {
+                "foreground": "#f9e2af",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Nova Classes",
+            "scope": [
+                "entity.name.type.class.nova",
+                "entity.other.inherited-class.nova"
+            ],
+            "settings": {
+                "foreground": "#f9e2af",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Nova Constants",
+            "scope": [
+                "constant.language.nova"
+            ],
+            "settings": {
+                "foreground": "#f38ba8"
+            }
+        },
+        {
+            "name": "Nova Operators",
+            "scope": [
+                "keyword.operator.arithmetic.nova",
+                "keyword.operator.comparison.nova",
+                "keyword.operator.logical.nova",
+                "keyword.operator.assignment.nova"
+            ],
+            "settings": {
+                "foreground": "#89dceb"
+            }
+        },
+        {
+            "name": "Nova Variables",
+            "scope": [
+                "variable.other.readwrite.nova",
+                "variable.parameter.nova"
+            ],
+            "settings": {
+                "foreground": "#cdd6f4"
+            }
+        },
+        {
+            "name": "Nova Properties",
+            "scope": [
+                "variable.other.property.nova"
+            ],
+            "settings": {
+                "foreground": "#f2cdcd"
+            }
+        },
+        {
+            "name": "Nova Punctuation",
+            "scope": [
+                "punctuation.section.block.nova",
+                "punctuation.section.brackets.nova",
+                "punctuation.section.parens.nova",
+                "punctuation.separator.comma.nova"
+            ],
+            "settings": {
+                "foreground": "#bac2de"
+            }
+        }
+    ]
+}
